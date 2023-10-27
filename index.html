@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +9,10 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="media/css/styles_v1.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-
 
 <body>
     <nav id="overlay">
@@ -34,32 +34,34 @@
     </nav>
 
     <header class="col">
-        <a href="index.html" ><img class="logo" src="media/images/icons/logo.png" style="vertical-align:middle"></a>
+        <a href="index.html"><img class="logo" src="media/images/icons/logo.png" style="vertical-align:middle"></a>
         <i id="open-menu" class="menu-button fa-solid fa-bars"></i>
     </header>
 
     <section class="carousel-section p-4 p-sm-3 p-md-2 p-lg-1 p-xl-0">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="media/images/radio.png" class="d-block img-fluid w-60 m-auto carousel-img" alt="radio">
-              </div>
-              <div class="carousel-item">
-                <img src="media/images/controller.png" class="d-block img-fluid w-60 m-auto carousel-img" alt="gaming-controller">
-              </div>
-              <div class="carousel-item">
-                <img src="media/images/suit.png" class="d-block img-fluid w-60 m-auto carousel-img" alt="suit">
-              </div>
+                <div class="carousel-item active">
+                    <img src="media/images/radio.png" class="d-block img-fluid w-60 m-auto carousel-img" alt="radio">
+                </div>
+                <div class="carousel-item">
+                    <img src="media/images/controller.png" class="d-block img-fluid w-60 m-auto carousel-img"
+                        alt="gaming-controller">
+                </div>
+                <div class="carousel-item">
+                    <img src="media/images/suit.png" class="d-block img-fluid w-60 m-auto carousel-img" alt="suit">
+                </div>
             </div>
-          </div>
+        </div>
     </section>
-    <footer>
+
+    <footer class="pt-0">
         <div class="footertop">
-            <a href="index.html"><img class="namelogo1"src="media/images/icons/logo.png" style="vertical-align:middle"></a>
+            <a href="index.html"><img class="namelogo1" src="media/images/icons/logo.png"></a>
             <ul>
-                <li><a href="tel:123-456-7890">Contact us: +1 123-456-7890</a></li> 
-                <li><a href="mailto:example@gmail.com">Email:example@gmail.com</a></li> 
-            </ul>           
+                <li><a href="tel:123-456-7890">Contact us: +1 123-456-7890</a></li>
+                <li><a href="mailto:example@gmail.com">Email:example@gmail.com</a></li>
+            </ul>
         </div>
         <div class="footerbottom">
             <p>Copyright &copy;2023 Sharequill PVT. LTD. All Rights Reserved. | Terms & Conditions</p>
@@ -70,54 +72,40 @@
     </footer>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var scrollToTopButton = document.querySelector(".scroll-to-top");
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopButton.style.display = "block";
+            } else {
+                scrollToTopButton.style.display = "none";
+            }
+        };
+
+        // Scroll to the top when the button is clicked
+        scrollToTopButton.addEventListener("click", function () {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        });
+    });
 
     var overlay = document.getElementById("overlay");
     var closeMenu = document.getElementById("close-menu");
     var openMenu = document.getElementById("open-menu");
 
-    openMenu.addEventListener("click", function() {
+    openMenu.addEventListener("click", function () {
         overlay.classList.add("show-menu");
     });
 
-    closeMenu.addEventListener("click", function() {
+    closeMenu.addEventListener("click", function () {
         overlay.classList.remove("show-menu");
     });
 
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-    var scrollToTopButton = document.querySelector(".scroll-to-top");
-    window.onscroll = function() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            scrollToTopButton.style.display = "block";
-        } else {
-            scrollToTopButton.style.display = "none";
-        }
-    };
-
-    // Scroll to the top when the button is clicked
-    scrollToTopButton.addEventListener("click", function() {
-        document.body.scrollTop = 0; 
-        document.documentElement.scrollTop = 0; 
-    });
-});
-
-    var overlay = document.getElementById("overlay");
-    var closeMenu = document.getElementById("close-menu");
-    var openMenu = document.getElementById("open-menu");
-
-    openMenu.addEventListener("click", function() {
-        overlay.classList.add("show-menu");
-    });
-
-    closeMenu.addEventListener("click", function() {
-        overlay.classList.remove("show-menu");
-    });
-
-</script>
 </html>

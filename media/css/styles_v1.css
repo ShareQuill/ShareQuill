@@ -31,6 +31,19 @@
   box-sizing: border-box;
 }
 
+/* Hide the scrollbar while allowing scrolling */
+body::-webkit-scrollbar {
+  width: 0rem;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Make the scrollbar thumb transparent */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: transparent; /* Make the scrollbar track transparent */
+}
+
 body {
   background-image: url("../images/background.jpg");
   background-size: cover;
@@ -51,11 +64,12 @@ body section .carousel-img {
 }
 
 nav {
-  position: absolute;
+  position: fixed;
   padding: 2em;
   background: black;
   width: 100%;
   height: 100%;
+  max-height: 100%;
   display: none;
   z-index: 1;
   transform: scaleX(0);
@@ -130,8 +144,6 @@ header .menu-button {
 
 footer {
   background: #000000;
-  height: 20rem;
-  padding-top: 2.5rem;
   color: #ffffff;
 }
 footer .footertop {
