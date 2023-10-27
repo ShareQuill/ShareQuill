@@ -1,3 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Unna&display=swap");
+@keyframes slide-menu {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes show-x {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes menu-item-anim {
+  from {
+    transform: translateY(30%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 * {
   margin: 0px;
   padding: 0px;
@@ -8,6 +35,8 @@ body {
   background-image: url("../images/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100%;
+  background-color: black;
 }
 body section .carousel-img {
   animation: neonLight 1s linear infinite;
@@ -57,7 +86,13 @@ nav ul li {
 }
 
 header {
-  padding: 2em;
+  height: 72px;
+}
+header .logo {
+  display: flex;
+  width: 6.5rem;
+  height: auto;
+  float: left;
 }
 header a {
   text-decoration: none;
@@ -65,7 +100,9 @@ header a {
   font-weight: bold;
 }
 header .menu-button {
-  width: 32px;
+  display: flex;
+  margin-right: 30px;
+  margin-top: 28px;
   float: right;
   cursor: pointer;
   color: #ffffff;
@@ -91,29 +128,64 @@ header .menu-button {
   animation: menu-item-anim 0.6s forwards 1.6s ease-in-out;
 }
 
-@keyframes slide-menu {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
+footer {
+  background: #000000;
+  height: 20rem;
+  padding-top: 2.5rem;
+  color: #ffffff;
 }
-@keyframes show-x {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+footer .footertop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 0rem;
 }
-@keyframes menu-item-anim {
-  from {
-    transform: translateY(30%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+footer .footertop .namelogo1 {
+  font-size: 1.3rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "El Messiri", sans-serif;
+  font-weight: 800;
+  max-width: 40%;
+  margin-bottom: 2rem;
+}
+footer .footertop ul li {
+  display: inline-block;
+  list-style: none;
+  margin: 10px 15px;
+}
+footer .footertop ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+}
+footer .footerbottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: small;
+}
+
+.scroll-to-top {
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.scroll-to-top img {
+  width: 40px;
+  height: auto;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+}
+.scroll-to-top:hover img {
+  background-color: #9b9b9b;
 }/*# sourceMappingURL=styles_v1.css.map */
