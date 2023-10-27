@@ -12,6 +12,8 @@ body {
     background-image: url('../images/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    height: 100%;
+    background-color: black;
     section {
         .carousel-img {
             // filter: drop-shadow(30px 10px 4px #000000);
@@ -72,8 +74,13 @@ nav {
 }
 
 header {
-    padding: 2em;
-
+    height: 72px;
+    .logo{
+        display: flex;
+        width: 6.5rem;
+        height: auto;
+        float: left;
+    }
     a {
         text-decoration: none;
         color: black;
@@ -81,7 +88,9 @@ header {
     }
 
     .menu-button {
-        width: 32px;
+        display: flex;
+        margin-right: 30px;
+        margin-top: 28px;
         float: right;
         cursor: pointer;
         color: #ffffff;
@@ -109,5 +118,79 @@ header {
     }
     li:nth-of-type(4) {
         animation: menu-item-anim .6s forwards 1.6s ease-in-out;
+    }
+}
+
+
+footer {
+    background: $footer-background;
+    height: 20rem;
+    padding-top: 2.5rem;
+    color: $footer-text-color;
+
+    .footertop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        margin-top: 0rem;
+
+        .namelogo1 {
+            font-size: 1.3rem;
+            color: $footer-text-color;
+            text-decoration: none;
+            font-family: 'El Messiri', sans-serif;
+            font-weight: 800;
+            max-width: 40%;
+            margin-bottom: 2rem;
+        }
+
+        ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 10px 15px;
+
+            a {
+                text-decoration: none;
+                color: $footer-text-color;
+                font-weight: 500;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .footerbottom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        // margin-top: 30px;
+        font-size: small;
+    }
+}
+
+
+.scroll-to-top {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+
+    img {
+        width: 40px; 
+        height: auto; 
+        background-color: $button-background-color;
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    &:hover {
+        img {
+            background-color: $button-hover-color;
+        }
     }
 }
