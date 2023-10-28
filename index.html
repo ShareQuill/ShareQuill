@@ -16,19 +16,19 @@
 
 <body>
 
-    <nav id="overlay">
+    <nav id="overlay" class="nav">
         <i id="close-menu" class="close-button fa-solid fa-xmark"></i>
         <ul class="list-group list-group-horizontal-md d-md-flex justify-content-between">
-            <li>
+            <li class="nav-link">
                 <a href="#">Home</a>
             </li>
-            <li>
+            <li class="nav-link">
                 <a href="#">About</a>
             </li>
-            <li>
+            <li class="nav-link">
                 <a href="#">Services</a>
             </li>
-            <li>
+            <li class="nav-link">
                 <a href="#">Contact Us</a>
             </li>
         </ul>
@@ -107,7 +107,7 @@
         <div class="footerbottom">
             <p>Copyright &copy;2023 Sharequill PVT. LTD. All Rights Reserved. | Terms & Conditions</p>
         </div>
-        <div id="scrollToTopButton" class="scroll-to-top">
+        <div id="scrollToTopButton" class="scroll-to-top" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Scroll to Top">
             <img src="media/images/icons/upbutton.png" alt="Scroll to Top">
         </div>
     </footer>
@@ -148,6 +148,11 @@
     closeMenu.addEventListener("click", function () {
         overlay.classList.remove("show-menu");
     });
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 
 </script>
 
