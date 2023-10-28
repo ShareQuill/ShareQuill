@@ -53,10 +53,53 @@ body {
         .carousel-img {
             filter: drop-shadow(30px 10px 4px #000000);
             animation: neonLight 1s linear infinite;
-            width: 65%;
+            width: 65% !important;
         }
     }
 
+}
+
+#parallax {
+    // border: 1px solid black;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../images/"),url("../images/icons/2.png"), url("../images/icons/3.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: 50% 50%;
+  }
+.animated-button {
+    display: flex;
+    background-color: transparent;
+    color: #fff;
+    padding: 5px 10px;
+    // border: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.animated-button:hover {
+    background-color: $login-color-pink;
+}
+
+.loginbtn{
+    display: flex;
+    margin-right: 30px;
+    margin-top: 16px;
+    float: right;
+}
+
+.dashbtn{
+    border: 1px solid white;
+    border-radius: 5px;
+    color:white
+}
+
+.dashbtn:hover {
+    background-color: $login-color-pink;
 }
 
 nav {
@@ -103,6 +146,8 @@ header {
     height: 72px;
     .logo{
         display: flex;
+        margin-left: 5rem;
+        margin-top: 0.5rem;
         width: 6.5rem;
         height: auto;
         float: left;
@@ -115,7 +160,7 @@ header {
 
     .menu-button {
         display: flex;
-        margin-right: 30px;
+        margin-right: 60px;
         margin-top: 28px;
         float: right;
         cursor: pointer;
@@ -244,7 +289,8 @@ footer {
     }
     
     .card-img-top {
-        margin-top: -50%;
+        margin-top: -40%;
+        width: 70%;
     }
 
     .btn-float {

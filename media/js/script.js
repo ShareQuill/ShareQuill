@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (productsData === false) {
     
         setTimeout(function() {
-            var spinners = document.querySelectorAll(".spinner-border");
-            spinners.forEach(function(spinner) {
+            var spinnerContainer = document.querySelectorAll(".spinner-container");
+            spinnerContainer.forEach(function(spinner) {
                 spinner.classList.add("d-none");
             });
     
@@ -23,3 +23,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 2000);
     }
 });
+
+(function() {
+    // Add event listener
+    document.addEventListener("mousemove", parallax);
+    const elem = document.querySelector("#parallax");
+    // Magic happens here
+    function parallax(e) {
+        let _w = window.innerWidth/2;
+        let _h = window.innerHeight/2;
+        let _mouseX = e.clientX;
+        let _mouseY = e.clientY;
+        let _depth1 = `${50 - (_mouseX - _w) * 0.01}% ${50 - (_mouseY - _h) * 0.01}%`;
+        let _depth2 = `${50 - (_mouseX - _w) * 0.02}% ${50 - (_mouseY - _h) * 0.02}%`;
+        let _depth3 = `${50 - (_mouseX - _w) * 0.0}% ${50 - (_mouseY - _h) * 0.00}%`;
+        let x = `${_depth3}, ${_depth2}, ${_depth1}`;
+        console.log(x);
+        elem.style.backgroundPosition = x;
+    }
+
+})();
