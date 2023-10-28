@@ -16,8 +16,15 @@
 
 <body>
 
-    <nav id="overlay" class="nav">
-        <i id="close-menu" class="close-button fa-solid fa-xmark"></i>
+    <nav id="overlay">
+        <div class="d-flex container-fluid navbar bg-body-tertiary justify-content-center">
+            <form class="d-flex justify-content-center" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success dashbtn" type="submit">Search</button>
+            </form>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i id="close-menu" class="close-button fa-solid fa-xmark"></i>
+        </div>
         <ul class="list-group list-group-horizontal-md d-md-flex justify-content-between">
             <li class="nav-link">
                 <a href="#">Home</a>
@@ -37,9 +44,10 @@
     <header class="col">
         <a href="index.html"><img class="logo" src="media/images/logo.png"></a>
         <i id="open-menu" class="menu-button fa-solid fa-bars"></i>
+        <a href="login.html"><button class="animated-button loginbtn">Sign In</button></a>
     </header>
 
-    <section class="carousel-section d-flex justify-content-center align-items-center">
+    <section id="parallax" class="carousel-section d-flex justify-content-center align-items-center">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner">
                 <div class="carousel-item active img-fluid">
