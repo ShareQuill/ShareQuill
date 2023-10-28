@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="media/css/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="shortcut icon" href="media/images/controller.png" type="image/x-icon">
+</head>
+
+<body class="min-vh-100 min-vw-100">
+  <div class="container-fluid mt-lg-5 p-3 d-flex justify-content-center">
+    <form id="Form" class="custom-width-form d-flex flex-column">
+      <img src="" alt="">
+      <h1 class="h1 mb-2 fw-bolder">Continue to create your account</h1>
+      <div class="d-block h-50">
+        <label for="inputFirstName" class="mb-2" min-length="3">First Name</label>
+        <input type="text" id="inputFirstName" class="form-control mb-5" placeholder="enter your firstname" required>
+      </div>
+      <div class="d-none">
+        <label for="inputLastname" class="mb-2" min-length="2">Last Name</label>
+        <input type="text" id="inputLastname" class="form-control mb-5" placeholder="enter your lastname" required>
+      </div>
+      <div class="d-none">
+        <label class="mb-2">Email address</label>
+        <input type="email" id="inputEmail" class="form-control mb-5"
+          placeholder="enter your northeastern email address" required>
+      </div>
+      <div class="d-none">
+        <label for="inputPassword" class="mb-2" min-length="8">Password</label>
+        <input type="password" id="inputPassword" class="form-control mb-5" placeholder="enter your password" required>
+      </div>
+      <button disabled class="btn btn-lg btn-primary btn-block" id="continue" type="button">Continue</button>
+    </form>
+  </div>
+  <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Terms and Conditions</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Terms and Conditions <br>
+          By clicking "OK," you agree to these terms and conditions.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="okBtn">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="media/js/signup.js"></script>
+
+</html>
