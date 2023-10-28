@@ -53,7 +53,8 @@ body {
         .carousel-img {
             filter: drop-shadow(30px 10px 4px #000000);
             animation: neonLight 1s linear infinite;
-            width: 65%;
+            width: 65% !important;
+            background-size: cover;
         }
     }
 
@@ -244,7 +245,8 @@ footer {
     }
     
     .card-img-top {
-        margin-top: -50%;
+        margin-top: -40%;
+        width: 70%;
     }
 
     .btn-float {

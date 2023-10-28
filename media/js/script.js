@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (productsData === false) {
     
         setTimeout(function() {
-            var spinners = document.querySelectorAll(".spinner-border");
-            spinners.forEach(function(spinner) {
+            var spinnerContainer = document.querySelectorAll(".spinner-container");
+            spinnerContainer.forEach(function(spinner) {
                 spinner.classList.add("d-none");
             });
     
