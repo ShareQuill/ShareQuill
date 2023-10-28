@@ -5,6 +5,20 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: $font-family;
+}
+
+/* Hide the scrollbar while allowing scrolling */
+body::-webkit-scrollbar {
+    width: 0rem;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Make the scrollbar thumb transparent */
+}
+
+body::-webkit-scrollbar-track {
+    background-color: transparent; /* Make the scrollbar track transparent */
 }
 
 /* Hide the scrollbar while allowing scrolling */

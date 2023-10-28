@@ -1,0 +1,38 @@
+@import 'config';
+
+
+*{
+    font-family: $font-family;
+}
+
+.custom-width-form{
+    width: 100% !important;
+}
+
+.btn:disabled{
+    cursor: not-allowed;
+    pointer-events: painted;
+}
+
+.fw-400{
+    font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+    .custom-width-form{
+        width: 60% !important;
+    }
+}
+
+@media screen and (min-width: 1000px){
+    .custom-width-form{
+        width: 40% !important;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .custom-width-form{
+        width: 20% !important;
+    }
+}
+
