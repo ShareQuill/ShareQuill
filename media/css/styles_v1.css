@@ -45,13 +45,21 @@ body::-webkit-scrollbar-track {
 }
 
 body {
-  background-image: url("../images/background.jpg");
+  background-image: url("../images/background_image.png");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
   background-color: black;
 }
-body section .carousel-img {
+body .carousel-section {
+  width: 100%;
+  display: block;
+}
+body .carousel-section .carousel-inner {
+  display: block;
+}
+body .carousel-section .carousel-img {
+  filter: drop-shadow(30px 10px 4px #000000);
   animation: neonLight 1s linear infinite;
 }
 @keyframes neonLight {
@@ -200,4 +208,59 @@ footer .footerbottom {
 }
 .scroll-to-top:hover img {
   background-color: #9b9b9b;
+}
+
+.card-display {
+  width: 80%;
+  margin: auto;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+.card-display .flex-x {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.card-display .card {
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  -webkit-backdrop-filter: blur(1rem);
+          backdrop-filter: blur(1rem);
+  box-shadow: 1.3rem 1.3rem 1.3rem rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 0% 2% 3% 2%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 18rem;
+}
+.card-display .mt-x {
+  margin-top: 30%;
+}
+.card-display .glass-effect {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.card-display .card-img-top {
+  margin-top: -50%;
+}
+.card-display .btn-float {
+  margin-top: 8%;
+  border-radius: 2rem;
+}
+.card-display .btn-float:hover {
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
+}
+.card-display .spinner-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.card-display .spinner-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }/*# sourceMappingURL=styles_v1.css.map */

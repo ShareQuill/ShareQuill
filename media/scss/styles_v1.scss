@@ -21,15 +21,21 @@ body::-webkit-scrollbar-track {
 }
 
 body {
-    background-image: url('../images/background.jpg');
+    background-image: url('../images/background_image.png');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
     background-color: black;
 
-    section {
+    .carousel-section {
+        width: 100%;
+        display: block;
+
+        .carousel-inner {
+            display: block;
+        }
         .carousel-img {
-            // filter: drop-shadow(30px 10px 4px #000000);
+            filter: drop-shadow(30px 10px 4px #000000);
             animation: neonLight 1s linear infinite;
         }
         @keyframes neonLight {
@@ -202,5 +208,67 @@ footer {
         img {
             background-color: $button-hover-color;
         }
+    }
+}
+
+.card-display {
+    width: 80%;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+
+    .flex-x {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card {
+        border-radius: 1rem;
+        border: 1px solid transparent;
+        backdrop-filter: blur(1rem);
+        box-shadow: 1.3rem 1.3rem 1.3rem rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+        padding: 0% 2% 3% 2%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 18rem;
+    }
+
+    .mt-x {
+        margin-top: 30%;
+    }
+    
+    .glass-effect {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .card-img-top {
+        margin-top: -50%;
+    }
+
+    .btn-float {
+        margin-top: 8%;
+        border-radius: 2rem;
+    }
+    .btn-float:hover {
+        box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
+    }
+
+    .spinner-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .spinner-border {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
     }
 }
