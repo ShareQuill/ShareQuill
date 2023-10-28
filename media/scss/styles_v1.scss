@@ -198,6 +198,10 @@ footer {
     background: $footer-background;
     color: $footer-text-color;
 
+    a {
+        text-decoration: none;
+    }
+
     .footertop {
         display: flex;
         align-items: center;
@@ -323,7 +327,27 @@ footer {
     width: 10%;
 }
 
+.footerbtn{
+    text-decoration: none;
+    border: none;
+
+}
+
+.footerbtn{
+    text-decoration: none;
+    border: none;
+    margin-bottom: 10px;
+
+}
+.footerbtn:hover{
+    background-color: transparent;
+}
+
 .toast{
+    display: block;
+    position: fixed;
+    bottom: 150px;
+    right: 30px;
     background-color: $login-color-pink;
     float: right;
     color: #000000;
@@ -334,3 +358,32 @@ footer {
     color: #000000;
     font-size: large;
 }
+
+@media (max-width: 768px) {
+    .toast {
+        bottom: 100px;
+        right: 10px;
+    }
+
+    .toast-header {
+        font-size: medium;
+    }
+}
+
+/* Responsive styles for even smaller screens */
+@media (max-width: 576px) {
+    .toast {
+        margin-right: 10px;
+        bottom: 80px;
+        right: 10px;
+        font-size: small;
+    }
+
+    .toast-header {
+        font-size: small;
+    }
+}
+
+
+
+
