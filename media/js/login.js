@@ -1,5 +1,7 @@
 const emailField = document.getElementById("inputEmail");
 const passwordField = document.getElementById("inputPassword");
+const errorEmail = document.getElementById("error_email");
+const errorPassword = document.getElementById("error_password");
 const continueBtn = document.getElementById("continue");
 const progress = document.getElementById("progress");
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
@@ -23,10 +25,12 @@ emailField.addEventListener("input",function(e) {
     if(!e.target.value.trim().match(emailRegex)) {
         passwordField.parentElement.classList = "d-none";
         progress.style.width = "0%";
+        errorEmail.classList = "d-block";
     }
     else{
         passwordField.parentElement.classList = "d-block mb-3";
         progress.style.width = "50%";
+        errorEmail.classList = "d-none";
     }
 });
 
@@ -34,10 +38,12 @@ passwordField.addEventListener("input", function(e){
     if(!e.target.value.trim().match(passRegex)) {
         continueBtn.disabled = true;
         progress.style.width = "50%";
+        errorPassword.classList = "d-block";
     }
     else{
         continueBtn.disabled = false;
         progress.style.width = "95%";
+        errorPassword.classList = "d-none";
     }
 })
 
