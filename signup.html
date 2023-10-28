@@ -27,24 +27,36 @@
     <div class="card custom-width-form">
       <div class="card-body text-center">
     <form id="Form" class="d-flex flex-column justify-content-center">
-      <div class="d-flex justify-content-center"><img class="mb-3" src="media/images/icons/logo.png" alt="Logo"></div>
+      <div class="d-flex justify-content-center"><a href="index.html"><img class="mb-3" src="media/images/icons/logo.png" alt="Logo"></a></div>
       <h1 class="h5 mb-2 fw-bolder">Continue to create your account</h1>
       <div class="d-block h-50">
         <label for="inputFirstName" class="mb-2" min-length="3">First Name</label>
         <input type="text" id="inputFirstName" class="form-control mb-2" placeholder="Enter your firstname" required>
       </div>
+      <div id="error_firstname" class="d-none" style="color: red;">
+        Please enter a valid firstname
+    </div>
       <div class="d-none">
         <label for="inputLastname" class="mb-2" min-length="2">Last Name</label>
         <input type="text" id="inputLastname" class="form-control mb-2" placeholder="Enter your lastname" required>
       </div>
+      <div id="error_lastname" class="d-none" style="color: red;">
+        Please enter a valid lastname
+    </div>
       <div class="d-none">
         <label class="mb-2">Email address</label>
         <input type="email" id="inputEmail" class="form-control mb-2" placeholder="Enter your northeastern email address" required>
+      </div>
+      <div id="error_email" class="d-none" style="color: red;">
+        Please enter a valid email address
       </div>
       <div class="d-none">
         <label for="inputPassword" class="mb-2" min-length="8">Password</label>
         <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Enter your password" required>
       </div>
+      <div id="error_password" class="d-none" style="color: red;">
+        Please enter a valid password including 1 uppercase, 1number and minimum of 8 length
+    </div>
       <button disabled class="form-control btn btn-primary submit px-3" id="continue" type="button">Continue</button>
       <div class="text-center">
         <label>Already have an account ?</label>
