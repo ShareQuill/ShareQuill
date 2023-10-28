@@ -5,6 +5,69 @@
     font-family: $font-family;
 }
 
+@mixin cardView{
+    background-color: rgba(0, 0, 0, 0.08);
+    border: none;
+    border-radius: 2rem;
+    color: #fff;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
+
+.progress{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 0.6rem;
+}
+.progress-bar{
+    background-color: $login-color-pink;
+}
+
+.form-control:focus{
+    box-shadow: none;
+}
+
+
+.card, .modal-content, .form-control{
+    @include cardView();
+    img{
+        width: 20% !important;
+    }
+    a{
+        text-decoration: none;
+        color: $login-color-pink;
+    }
+    .btn{
+        background-color: $login-color-pink;
+    }
+}
+
+.modal-content{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.form-control::placeholder{
+    color: #fff;
+}
+
+
 .custom-width-form{
     width: 100% !important;
 }
@@ -12,10 +75,6 @@
 .btn:disabled{
     cursor: not-allowed;
     pointer-events: painted;
-}
-
-.fw-400{
-    font-weight: 400;
 }
 
 @media screen and (min-width: 768px) {
@@ -26,7 +85,7 @@
 
 @media screen and (min-width: 1000px){
     .custom-width-form{
-        width: 40% !important;
+        width: 25% !important;
     }
 }
 
