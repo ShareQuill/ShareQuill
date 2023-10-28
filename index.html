@@ -17,7 +17,22 @@
 <body>
 
     <nav id="overlay">
-        <i id="close-menu" class="close-button fa-solid fa-xmark"></i>
+        <div class="d-flex container-fluid navbar bg-body-tertiary justify-content-center">
+            <form class="d-flex justify-content-center" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success dashbtn" type="submit">Search</button>
+            </form>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i id="close-menu" class="close-button fa-solid fa-xmark"></i>
+        </div>
+        
+        <!-- <div class="d-flex container-fluid navbar bg-body-tertiary">
+              <form class="d-flex" role="search">
+                <input class="form-control me-2 justify-content-center" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success justify-content-center" type="submit">Search</button>
+              </form>
+              
+        </div> -->
         <ul class="list-group list-group-horizontal-md d-md-flex justify-content-between">
             <li>
                 <a href="#">Home</a>
@@ -37,17 +52,17 @@
     <header class="col">
         <a href="index.html"><img class="logo" src="media/images/logo.png"></a>
         <i id="open-menu" class="menu-button fa-solid fa-bars"></i>
+        <a href="login.html"><button class="animated-button loginbtn">Sign In</button></a>
     </header>
 
-    <section class="carousel-section d-flex justify-content-center align-items-center">
+    <section id="parallax" class="carousel-section d-flex justify-content-center align-items-center">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="media/images/music.png" class="d-sm-block img-fluid m-auto carousel-img" alt="music">
                 </div>
                 <div class="carousel-item">
-                    <img src="media/images/controller.png" class="d-sm-block img-fluid m-auto carousel-img"
-                        alt="gaming-controller">
+                    <img src="media/images/controller.png" class="d-sm-block img-fluid m-auto carousel-img" alt="gaming-controller">
                 </div>
                 <div class="carousel-item">
                     <img src="media/images/suit.png" class="d-sm-block img-fluid m-auto carousel-img" alt="suit">
