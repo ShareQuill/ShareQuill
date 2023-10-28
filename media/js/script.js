@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let _depth2 = `${50 - (_mouseX - _w) * 0.02}% ${50 - (_mouseY - _h) * 0.02}%`;
         let _depth3 = `${50 - (_mouseX - _w) * 0.0}% ${50 - (_mouseY - _h) * 0.00}%`;
         let x = `${_depth3}, ${_depth2}, ${_depth1}`;
-        console.log(x);
         elem.style.backgroundPosition = x;
     }
 

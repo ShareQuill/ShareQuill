@@ -71,6 +71,7 @@ body {
   }
 .animated-button {
     display: flex;
+    text-decoration: none;
     background-color: transparent;
     color: #fff;
     padding: 5px 10px;
@@ -83,6 +84,7 @@ body {
 
 .animated-button:hover {
     background-color: $login-color-pink;
+    color: #000000;
 }
 
 .loginbtn{
