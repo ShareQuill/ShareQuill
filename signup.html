@@ -16,44 +16,59 @@
 </head>
 
 <body class="min-vh-100 min-vw-100">
-  <div class="container-fluid mt-lg-5 p-3 d-flex justify-content-center">
-    <form id="Form" class="custom-width-form d-flex flex-column">
-      <img src="" alt="">
-      <h1 class="h1 mb-2 fw-bolder">Continue to create your account</h1>
+  <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+    <div id="progress" class="progress-bar" style="width: 0%"></div>
+  </div>
+  <video id="background-video" autoplay loop muted>
+    <source src="media/images/loginBG.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="container-fluid mt-lg-3 p-3 d-flex justify-content-center">
+    <div class="card custom-width-form">
+      <div class="card-body text-center">
+    <form id="Form" class="d-flex flex-column justify-content-center">
+      <div class="d-flex justify-content-center"><img class="mb-3" src="media/images/icons/logo.png" alt="Logo"></div>
+      <h1 class="h5 mb-2 fw-bolder">Continue to create your account</h1>
       <div class="d-block h-50">
         <label for="inputFirstName" class="mb-2" min-length="3">First Name</label>
-        <input type="text" id="inputFirstName" class="form-control mb-5" placeholder="enter your firstname" required>
+        <input type="text" id="inputFirstName" class="form-control mb-2" placeholder="Enter your firstname" required>
       </div>
       <div class="d-none">
         <label for="inputLastname" class="mb-2" min-length="2">Last Name</label>
-        <input type="text" id="inputLastname" class="form-control mb-5" placeholder="enter your lastname" required>
+        <input type="text" id="inputLastname" class="form-control mb-2" placeholder="Enter your lastname" required>
       </div>
       <div class="d-none">
         <label class="mb-2">Email address</label>
-        <input type="email" id="inputEmail" class="form-control mb-5"
-          placeholder="enter your northeastern email address" required>
+        <input type="email" id="inputEmail" class="form-control mb-2" placeholder="Enter your northeastern email address" required>
       </div>
       <div class="d-none">
         <label for="inputPassword" class="mb-2" min-length="8">Password</label>
-        <input type="password" id="inputPassword" class="form-control mb-5" placeholder="enter your password" required>
+        <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Enter your password" required>
       </div>
-      <button disabled class="btn btn-lg btn-primary btn-block" id="continue" type="button">Continue</button>
+      <button disabled class="form-control btn btn-primary submit px-3" id="continue" type="button">Continue</button>
+      <div class="text-center">
+        <label>Already have an account ?</label>
+        <br>
+        <label><a href="login.html">Login in </a> to continue</label>
+    </div>
     </form>
+  </div>
+  </div>
   </div>
   <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Terms and Conditions</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: #fff;" onclick="onCancelClick()"></button>
         </div>
         <div class="modal-body">
           Terms and Conditions <br>
           By clicking "OK," you agree to these terms and conditions.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="okBtn">Ok</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius: 2rem;" onclick="onCancelClick()">Cancel</button>
+          <button type="button" class="btn btn-primary" id="okBtn" style="border-radius: 2rem;">Ok</button>
         </div>
       </div>
     </div>
