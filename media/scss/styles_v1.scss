@@ -320,3 +320,15 @@ footer {
 .namelogo1 {
     width: 10%;
 }
+
+.toast{
+    background-color: $login-color-pink;
+    float: right;
+    color: #000000;
+    font-size: medium;
+}
+.toast-header{
+    background-color: $login-color-pink;
+    color: #000000;
+    font-size: large;
+}
