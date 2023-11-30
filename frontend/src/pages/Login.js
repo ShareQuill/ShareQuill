@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import InputGroup from '../Inputs/InputGroup';
-import InputButton from '../Buttons/InputButton';
-import '../../scss/styles.scss'; 
+import InputGroup from '../components/Inputs/InputGroup';
+import InputButton from '../components/Buttons/InputButton';
+import '../scss/styles.scss'; 
 
 const Login = () => {
     const [email, setEmail] = useState('');
