@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./routers/userRoutes');
+const apiRoutes = require('./routers/apiRoutes');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -12,15 +13,9 @@ app.use(cors({
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
-
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
 // Use user routes
 app.use('/user', userRoutes);
+app.use('/api', apiRoutes);
 
 
 const PORT = 5000;
