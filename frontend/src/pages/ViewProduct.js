@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 
 const ViewProduct = () => {
   const { product } = useLocation();
-  console.log(product);
   return <></>;
 };
 
