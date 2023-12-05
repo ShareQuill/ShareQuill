@@ -1,9 +1,22 @@
 const mongoose = require("mongoose");
-require('dotenv').config();
+const collectionName = "products";
 
-const dbName = "Listings";
+const handleDataChange = (change) => {
+  // Extract updated data from the change event
+  const updatedData = change.fullDocument;
 
-mongoose.connect(process.env.MONGODB_URI + `${dbName}`);
+  // Update React state using the updated data
+  // ...
+
+  // Trigger re-renders of affected UI components
+  // ...
+};
+
+const startChangeStream = () => {
+  const collection = mongoose.model();
+  const changeStream = collection.watch();
+  changeStream.on('change', handleDataChange);
+};
 
 const productSchema = new mongoose.Schema({
   category: { type: String, required: true },
@@ -31,6 +44,6 @@ const productSchema = new mongoose.Schema({
   frequency: { type: String },
 });
 
-const Products = mongoose.model("products", productSchema);
+const Products = mongoose.model(collectionName, productSchema);
 
 module.exports = Products;
