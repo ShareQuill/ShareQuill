@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import InputGroup from '../components/inputs/InputGroup';
 import InputButton from '../components/buttons/InputButton';
-import '../scss/styles.scss'; 
+import '../scss/login.scss'; 
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -32,26 +32,28 @@ const Login = () => {
     };
 
     return (
-        <div className="container">
-        <Form>
-            <InputGroup
-            label="Email"
-            type="text"
-            placeholder="Enter email"
-            value={email}
-            onChange={setEmail}
-            controlId="formBasicEmail"/>
+        <div className='mainContainer'>
+            <div className="logincontainer">
+                <Form>
+                    <InputGroup
+                    label="Email"
+                    type="text"
+                    placeholder="Enter email"
+                    value={email}
+                    onChange={setEmail}
+                    controlId="formBasicEmail"/>
 
-            <InputGroup
-                label="Password"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={setPassword}
-                controlId="formBasicPassword"/>
+                    <InputGroup
+                        label="Password"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={setPassword}
+                        controlId="formBasicPassword"/>
 
-            <InputButton text="Login" onClick={handleLogin} />
-        </Form>
+                    <InputButton  text="Login" onClick={handleLogin} />
+                </Form>
+            </div>
         </div>
     );
 };
