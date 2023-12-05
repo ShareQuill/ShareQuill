@@ -6,14 +6,15 @@ import Login from './pages/Login';
 import ViewProduct from './pages/ViewProduct';
 import PostItems from './pages/PostItems';
 
+
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/login" element={<Login/>} />
         <Route path="/listing/:id" element={<ViewProduct/>} />
         <Route path="/postItems" element={<PostItems/>} />
+        <Route path="/login" element={<Login/>} />
       </Routes>
     </Router>
   );

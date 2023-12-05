@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const InputButton = ({ onClick }) => {
+const InputButton = ({ text, onClick }) => {
   return (
-    <Button variant="primary" type="button" onClick={onClick}>Login
+    <Button variant="primary" type="button" onClick={onClick}>{text}
     </Button>
   );
 };
