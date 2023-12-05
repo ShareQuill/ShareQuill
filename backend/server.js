@@ -4,6 +4,8 @@ const apiRoutes = require('./routers/apiRoutes');
 const cors = require('cors');
 require('dotenv').config();
 
+const dbName = process.env.MONGO_DB_NAME;
+
 const app = express();
 app.use(express.json());
 
@@ -12,16 +14,15 @@ app.use(cors({
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
-
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
 // Use user routes
 app.use('/api', apiRoutes);
 
+const connectToMongoDB = async () => {
+  const connection = await mongoose.connect(process.env.MONGODB_URI + `${dbName}`);
+  console.log('Connected to MongoDB - ' + dbName);
+}
+
+connectToMongoDB();
 
 const PORT = 5000;
 app.listen(PORT, () => {
