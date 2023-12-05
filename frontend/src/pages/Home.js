@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
 import "../scss/styles.scss";
 
 const Home = () => {
@@ -31,7 +30,7 @@ const Home = () => {
           className="container"
           key={product._id}
           onClick={() => {
-            navigate(`/listing/${product._id}`, { product: {product} });
+            navigate(`/products/${product._id}`, { product: {product} });
           }}
         >
           <Card style={{ width: "20rem" }}>

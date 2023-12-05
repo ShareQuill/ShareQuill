@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const serviceAccount = require("../config/sharequill13-firebase-adminsdk-opmti-25e8258497.json");
+const serviceAccount = require("../config/sharequill-t13-firebase-adminsdk-2ecq3-9d5d7d91de.json");
 
 const ProductsModel = require("../models/productsModel");
 
@@ -11,6 +11,7 @@ exports.productsHomePage = async (req, res) => {
       return;
     }
   } catch (error) {
+    console.error(error);
     res.status(400).json({ message: error.message });
   }
 };
@@ -30,14 +31,14 @@ exports.postSpecs = async (req, res) => {
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  storageBucket: "gs://sharequill13.appspot.com/",
+  storageBucket: "gs://sharequill-t13.appspot.com/",
 });
 
 exports.postImages = async (req, res) => {
   // Access the uploaded file from req.file
   const images = req.files;
   const bucket = admin.storage().bucket();
-  const directoryName = "Sample_Directory";
+  const directoryName = "Sample_Directory/";
 
   try {
     const uploadPromises = images.map((image) => {
