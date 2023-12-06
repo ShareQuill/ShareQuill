@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: 'http://localhost:3000',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
@@ -24,7 +24,7 @@ const connectToMongoDB = async () => {
 
 connectToMongoDB();
 
-const PORT = 5000;
+const PORT = 6000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
