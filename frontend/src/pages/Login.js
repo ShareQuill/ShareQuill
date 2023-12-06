@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import InputGroup from '../components/Inputs/InputGroup';
-import InputButton from '../components/Buttons/InputButton';
+import InputGroup from '../components/inputs/InputGroup';
+import InputButton from '../components/buttons/InputButton';
 import '../scss/styles.scss'; 
 
 const Login = () => {
@@ -50,7 +50,7 @@ const Login = () => {
                 onChange={setPassword}
                 controlId="formBasicPassword"/>
 
-            <InputButton onClick={handleLogin} />
+            <InputButton text="Login" onClick={handleLogin} />
         </Form>
         </div>
     );
