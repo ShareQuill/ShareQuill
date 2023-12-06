@@ -70,12 +70,12 @@ exports.loginUser = async (req, res) => {
     if (!user) {
       throw new Error('User not found');
     }
-    
+
     const isPasswordMatch = password === user.password;
     if (!isPasswordMatch) {
       throw new Error('Invalid password');
     }
-    res.json({ message: 'Login successful'});
+    res.json({ message: 'Login successful' });
   } catch (error) {
     console.log(error)
     res.status(401).json({ message: 'Authentication failed' });
