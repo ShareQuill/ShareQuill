@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 
 const PostItems = () => {
   const [selectedImages, setSelectedImages] = useState([]);
+  const [imageURLs, setImageURLs] = useState([]);
 
   const handleImageChange = (e) => {
     const files = e.target.files;
@@ -31,6 +32,7 @@ const PostItems = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          setImageURLs(data);
           console.log("Images uploaded successfully:", data);
         })
         .catch((error) => {
@@ -38,11 +40,6 @@ const PostItems = () => {
         });
     }
   };
-
-  useEffect(() => {
-    // This will log the updated value of selectedImages
-    console.log(selectedImages);
-  }, [selectedImages]);
 
   const postData = {
     category: "Electronics",
@@ -72,7 +69,7 @@ const PostItems = () => {
 
   const handleSubmit = () => {
     // Send formData to the backend (you can use fetch or axios)
-    console.log(postData);
+    postData.photos_directory = imageURLs;
     fetch("http://localhost:5000/api/products/specs/post", {
       method: "POST",
       headers: {

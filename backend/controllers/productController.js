@@ -1,4 +1,5 @@
 const admin = require("firebase-admin");
+const uuid = require('uuid');
 const serviceAccount = require("../config/sharequill-t13-firebase-adminsdk-2ecq3-9d5d7d91de.json");
 
 const ProductsModel = require("../models/productsModel");
@@ -25,6 +26,7 @@ exports.postSpecs = async (req, res) => {
     console.log("Received form data:", postData);
     res.json({ message: "Form data received successfully!" });
   } catch (error) {
+    console.error(error);
     res.status(400).json({ message: error.message });
   }
 };
@@ -38,7 +40,7 @@ exports.postImages = async (req, res) => {
   // Access the uploaded file from req.file
   const images = req.files;
   const bucket = admin.storage().bucket();
-  const directoryName = "Sample_Directory/";
+  const directoryName = `${uuid.v4()}/`;
 
   try {
     const uploadPromises = images.map((image) => {

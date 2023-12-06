@@ -23,7 +23,14 @@ const productSchema = new mongoose.Schema({
     city: { type: String },
     state: { type: String },
   },
-  photos_directory: { type: String },
+  photos_directory: {
+    imageUrl: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+  },
   frequency: { type: String },
 });
 
