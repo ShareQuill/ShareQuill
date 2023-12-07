@@ -14,9 +14,6 @@ return(
     <Productgallery/>
     <Mainfooter/>
   </>
-  
-   
-
 );
 };
 export default Main;
