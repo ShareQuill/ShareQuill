@@ -32,8 +32,6 @@ const Signup = () => {
             });
 
             if (response.status === 201) {
-                console.log(response.data);
-                alert("Signup Successful");
                 window.location.href = "/"
             } else {
                 console.error( response.status,'Signup failed');

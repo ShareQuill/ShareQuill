@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import { loadStripe } from "@stripe/stripe-js";
+import { useAuth } from "../hooks/authRedirectHook";
 
 const ViewProduct = () => {
   const location = useLocation();
   const product = location.state.product;
+  const auth = useAuth();
 
   const makePayment = async (product) => {
+    if(!auth.hasaccesstoken){
+      window.location.href = "/login"
+      return 
+    }
     const stripe = await loadStripe(
       "pk_test_51OHtYWHfFaxHofKUsnnno0r5QE3LVagHBag6E53tayznGP6vJtVkQPdSL805NPEHiWXgt7Es4r0NhGhOxRyS0cm500ono6kauf"
     );

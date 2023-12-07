@@ -30,7 +30,6 @@ const Login = () => {
         });
     
         if (response.status === 200) {
-            alert("Login Successful");
             window.location.href = "/"
         } else {
             console.error('Login failed');
