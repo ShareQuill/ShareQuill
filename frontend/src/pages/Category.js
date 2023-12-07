@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button } from "react-bootstrap";
-import "../scss/styles.scss";
+import { useParams } from 'react-router-dom';
 import ProductDisplay from "../components/partials/ProductDisplay";
 
-const Home = () => {
+const Category = () => {
   const [products, setProducts] = useState([]);
+  const { category } = useParams();
+
+  console.log("Category..", category);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products/home/fetch"
+          `http://localhost:5000/api/products/category/${category}`
         );
         const data = await response.json();
         setProducts(data);
@@ -31,4 +33,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Category;
