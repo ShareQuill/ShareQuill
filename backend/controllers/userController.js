@@ -1,8 +1,16 @@
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
-exports.createUser = async (req, res) => {
-  const { fullName, email, password } = req.body;
+exports.signupUser = async (req, res) => {
+  const allowedKeys = ['username', 'email', 'password'];
+  const receivedKeys = Object.keys(req.body);
+  const invalidKeys = receivedKeys.filter((key) => !allowedKeys.includes(key));
 
+  if (invalidKeys.length > 0) {
+    return res.status(400).json({ message: 'Invalid parameters in the request body' });
+  }
+  
+  const { username, email, password } = req.body;
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -10,16 +18,20 @@ exports.createUser = async (req, res) => {
       return;
     }
 
-    const user = new User({ fullName, email, password });
+    const user = new User({ username, email, password });
+    const token = jwt.sign({ userId: user.id, username: user.username }, process.env.JWT_KEY, { expiresIn: '1h' });  
     await user.save();
-    res.status(201).json({ message: 'User created successfully' });
+
+    res.cookie('userAccessToken', token, { httpOnly: true, maxAge: 3600000, secure: true });
+
+    res.status(201).json({ message: 'User signed up successfully' });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
 exports.editUser = async (req, res) => {
-  const { fullName, password, email } = req.body;
+  const { username, password, email } = req.body;
 
   try {
     const user = await User.findOne({ email });
@@ -27,7 +39,7 @@ exports.editUser = async (req, res) => {
       throw new Error('User not found');
     }
 
-    user.fullName = fullName;
+    user.username = username;
     user.password = password; 
     await user.save();
     res.json({ message: 'User details updated successfully' });
@@ -58,14 +70,14 @@ exports.loginUser = async (req, res) => {
     if (!user) {
       throw new Error('User not found');
     }
-    
+
     const isPasswordMatch = password === user.password;
     if (!isPasswordMatch) {
       throw new Error('Invalid password');
     }
-    res.json({ message: 'Login successful'});
+    res.json({ message: 'Login successful' });
   } catch (error) {
-    console.log(error)
+    console.error("[ERROR] ", error);
     res.status(401).json({ message: 'Authentication failed' });
   }
 };
