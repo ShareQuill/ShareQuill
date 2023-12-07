@@ -32,7 +32,7 @@ const Login = () => {
     
         if (response.status === 200) {
             alert("Login Successful");
-            navigate("/")
+            navigate("/");
         } else {
             console.error('Login failed');
         }

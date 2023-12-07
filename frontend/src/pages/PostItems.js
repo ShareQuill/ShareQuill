@@ -41,19 +41,19 @@ const PostItems = () => {
   };
 
   const postData = {
-    category: "Electronics",
-    sub_category: "Latest Printers",
-    type: "laser_printers",
-    name: "Printer Name",
-    description: "Item Description",
+    category: "Clothings",
+    sub_category: "Men",
+    type: "Jackets",
+    name: "Winter Jacket - Vayanga",
+    description: "Wind Proof, Water Proof",
     condition: "excellent",
     age: "less_than_3_months",
     rates: {
-      hourly_rate: 40,
-      daily_rate: 30,
-      weekly_rate: 20,
-      monthly_rate: 10,
-      sale: 50,
+      hourly_rate: 10,
+      daily_rate: 8,
+      weekly_rate: 5,
+      monthly_rate: 3,
+      sale: 15,
     },
     location: {
       apartment_name: "Sample Apartment",

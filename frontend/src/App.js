@@ -9,7 +9,7 @@ import PostItems from './pages/PostItems';
 import Signup from './pages/Signup';
 import Logout from './pages/Logout';
 import Success from './pages/Success';
-
+import Category from "./pages/Category";
 
 const App = () => {
   const [hasAccessToken, setHasAccessToken] = useState(false);
@@ -31,6 +31,7 @@ const App = () => {
           <Route path="/postItems" element={<PostItems/>} />
           <Route path="/logout" element={<Logout/>} />
           <Route path="/success" element={<Success/>} />
+          <Route path="/products/category/:category" element={<Category />} />
         </>
         ) : (
           <>
