@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import ViewProduct from './pages/ViewProduct';
 import PostItems from './pages/PostItems';
+import Success from './pages/Success';
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/login" element={<Login/>} />
         <Route path="/products/:id" element={<ViewProduct/>} />
         <Route path="/postItems" element={<PostItems/>} />
+        <Route path="/success" element={<Success/>} />
       </Routes>
     </Router>
   );

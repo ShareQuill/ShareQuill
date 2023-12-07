@@ -9,10 +9,9 @@ const PostItems = () => {
     const files = e.target.files;
 
     if (files.length > 0) {
-      console.log("Selected files:", files);
       setSelectedImages(files);
     } else {
-      console.error("No files selected");
+      console.error("[ERROR] No files selected");
     }
   };
 
@@ -50,16 +49,16 @@ const PostItems = () => {
     condition: "excellent",
     age: "less_than_3_months",
     rates: {
-      hourly_rate: "",
-      daily_rate: "",
-      weekly_rate: "",
-      monthly_rate: "",
-      sale: "",
+      hourly_rate: 40,
+      daily_rate: 30,
+      weekly_rate: 20,
+      monthly_rate: 10,
+      sale: 50,
     },
     location: {
       apartment_name: "Sample Apartment",
       area: "Downtown",
-      zip_code: "12345",
+      zip_code: 12345,
       city: "Sample City",
       state: "Sample State",
     },

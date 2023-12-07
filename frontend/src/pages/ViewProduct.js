@@ -26,7 +26,6 @@ const ViewProduct = () => {
     );
 
     const session = await response.json();
-
     const result = stripe.redirectToCheckout({
       sessionId: session.id,
     });

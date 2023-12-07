@@ -19,12 +19,12 @@ app.use('/api', apiRoutes);
 
 const connectToMongoDB = async () => {
   const connection = await mongoose.connect(process.env.MONGODB_URI + `${dbName}`);
-  console.log('Connected to MongoDB - ' + dbName);
+  console.log('[MONGO DB] Connected to MongoDB - ' + dbName);
 }
 
 connectToMongoDB();
 
 const PORT = 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`[SERVER] Server is running on port ${PORT}`);
 });
