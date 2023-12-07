@@ -1,4 +1,4 @@
-import '../../scss/tailwind.min.scss';
+
 
 const products = [
   {

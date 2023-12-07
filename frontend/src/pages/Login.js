@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap';
-import InputGroup from '../components/inputs/InputGroup';
-import InputButton from '../components/buttons/InputButton';
-import '../scss/login.scss'; 
 import axios from 'axios';
 import { useAuth } from '../hooks/authRedirectHook';
 
@@ -43,26 +39,8 @@ const Login = () => {
     return (
         <>
         {auth.hasaccessToken ? (<></>) :
-        (<div className="container">
-        <Form>
-            <InputGroup
-            label="Email"
-            type="text"
-            placeholder="Enter email"
-            value={email}
-            onChange={setEmail}
-            controlId="formBasicEmail"/>
+        (<div>
 
-            <InputGroup
-                label="Password"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={setPassword}
-                controlId="formBasicPassword"/>
-
-            <InputButton text="Login" onClick={handleLogin} />
-        </Form>
         </div>)
         }
         </>

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button } from "react-bootstrap";
-import "../scss/styles.scss";
 import ProductDisplay from "../components/partials/ProductDisplay";
 
 const Home = () => {
