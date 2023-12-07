@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import InputGroup from '../components/inputs/InputGroup';
 import InputButton from '../components/buttons/InputButton';
 import '../scss/login.scss'; 
 import axios from 'axios';
+import { useAuth } from '../hooks/authRedirectHook';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const accessTokenCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('userAccessToken='));
-    const navigate = useNavigate();
+    const auth = useAuth();
 
     useEffect(()=>{
-        if(accessTokenCookie){
-            navigate("/")
+        if(auth.hasaccessToken){
+            window.location.href = "/"
         }
     })
 
@@ -32,7 +31,7 @@ const Login = () => {
     
         if (response.status === 200) {
             alert("Login Successful");
-            navigate("/")
+            window.location.href = "/"
         } else {
             console.error('Login failed');
         }
@@ -43,7 +42,7 @@ const Login = () => {
 
     return (
         <>
-        {accessTokenCookie ? (<></>) :
+        {auth.hasaccessToken ? (<></>) :
         (<div className="container">
         <Form>
             <InputGroup
@@ -54,13 +53,13 @@ const Login = () => {
             onChange={setEmail}
             controlId="formBasicEmail"/>
 
-                    <InputGroup
-                        label="Password"
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={setPassword}
-                        controlId="formBasicPassword"/>
+            <InputGroup
+                label="Password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={setPassword}
+                controlId="formBasicPassword"/>
 
             <InputButton text="Login" onClick={handleLogin} />
         </Form>

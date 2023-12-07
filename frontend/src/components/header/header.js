@@ -5,10 +5,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBell, faMessage } from '@fortawesome/free-regular-svg-icons';
+import { useAuth } from '../../hooks/authRedirectHook';
 
 
 export default function AppHeader() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
+  const auth = useAuth();
 
   const handleOffcanvasToggle = () => {
     setShowOffcanvas(!showOffcanvas);
@@ -28,8 +30,14 @@ export default function AppHeader() {
             </Nav>
             <Nav className="ml-auto">
               <Nav.Link href="#user" className='uppertext'>Help and support</Nav.Link>
-              <Nav.Link href="#user" className='uppertext nohover'>|</Nav.Link>
-              <Nav.Link href="/login" className='uppertext'>Sign-in</Nav.Link>
+              <Nav.Link className='uppertext nohover'>|</Nav.Link>
+              { auth.hasaccessToken ?
+              <Nav.Link href="/logout" className='uppertext'>Sign-out</Nav.Link> :
+              <>
+              <Nav.Link href="/login" className='uppertext'>Login </Nav.Link>
+              <Nav.Link className='uppertext nohover'>|</Nav.Link>
+              <Nav.Link href="/signup" className='uppertext'> Sign up</Nav.Link>
+              </>}
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -64,7 +72,7 @@ export default function AppHeader() {
                 <NavDropdown.Item href="#about-action2">Action 2</NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Nav className="ml-auto">
+            {auth.hasaccessToken && <Nav className="ml-auto">
               <Nav.Link href="#search"><FontAwesomeIcon icon={faBell} className='text-dark' /></Nav.Link>
               <Nav.Link onClick={handleOffcanvasToggle}><FontAwesomeIcon icon={faMessage} className='text-dark' /></Nav.Link>
               <NavDropdown title={<FontAwesomeIcon icon={faUser} className='text-dark' />} id="nav-dropdown-user" className="no-arrow-dropdown">
@@ -73,7 +81,7 @@ export default function AppHeader() {
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
               </NavDropdown>
-            </Nav>
+            </Nav>}
           </Navbar.Collapse>
         </Container>
       </Navbar>
