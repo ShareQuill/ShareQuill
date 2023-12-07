@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import './scss/tailwind.min.scss';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Main from './pages/main/main';
-import ViewProduct from './pages/ViewProduct';
+import ViewProduct from './pages/viewproduct/ViewProduct';
 import PostItems from './pages/PostItems';
 import Signup from './pages/Signup';
 import Logout from './pages/Logout';

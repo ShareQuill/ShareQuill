@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
 import { loadStripe } from "@stripe/stripe-js";
-import { useAuth } from "../hooks/authRedirectHook";
+import Example from "./Example";
 
 const ViewProduct = () => {
   const location = useLocation();
-  const product = location.state.product;
-  const auth = useAuth();
+  // const product = location.state.product;
 
   const makePayment = async (product) => {
-    if(!auth.hasaccesstoken){
-      window.location.href = "/login"
-      return 
-    }
     const stripe = await loadStripe(
       "pk_test_51OHtYWHfFaxHofKUsnnno0r5QE3LVagHBag6E53tayznGP6vJtVkQPdSL805NPEHiWXgt7Es4r0NhGhOxRyS0cm500ono6kauf"
     );
@@ -41,23 +35,21 @@ const ViewProduct = () => {
     }
   };
 
+  const [images, setImages] = useState({
+    img1 : "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,b_rgb:f5f5f5/3396ee3c-08cc-4ada-baa9-655af12e3120/scarpa-da-running-su-strada-invincible-3-xk5gLh.png",
+    img2 : "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_440/e44d151a-e27a-4f7b-8650-68bc2e8cd37e/scarpa-da-running-su-strada-invincible-3-xk5gLh.png",
+    img3 : "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_440/44fc74b6-0553-4eef-a0cc-db4f815c9450/scarpa-da-running-su-strada-invincible-3-xk5gLh.png",
+    img4 : "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_440/d3eb254d-0901-4158-956a-4610180545e5/scarpa-da-running-su-strada-invincible-3-xk5gLh.png"
+  })
+
+  const [activeImg, setActiveImage] = useState(images.img1)
+
+  const [amount, setAmount] = useState(1);
+
+
   return (
-    <>
-      <div className="container" key={product._id}>
-        <Card style={{ width: "20rem" }}>
-          <Card.Img
-            variant="top"
-            src={product.photos_directory.imageUrl[0]}
-            style={{ width: "12rem" }}
-          />
-          <Card.Body>
-            <Card.Title>{product.name}</Card.Title>
-            <Card.Text>{product.description}</Card.Text>
-            <Button onClick={() => makePayment(product)}>Buy Now</Button>
-          </Card.Body>
-        </Card>
-      </div>
-    </>
+//     
+    <Example/>
   );
 };
 
