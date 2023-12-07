@@ -4,20 +4,19 @@ import InputGroup from '../components/inputs/InputGroup';
 import InputButton from '../components/buttons/InputButton';
 import axios from 'axios';
 import '../scss/styles.scss'; 
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/authRedirectHook';
 
 const Signup = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const accessTokenCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('userAccessToken='));
-    const navigate = useNavigate();
+    const auth = useAuth();
 
     useEffect(()=>{
-        if(accessTokenCookie){
-            navigate('/')
+        if(auth.hasaccessToken){
+            window.location.href = "/"
         }
-    })
+    }, [])
 
     const handleSignup = async () => {
         try {
@@ -35,7 +34,7 @@ const Signup = () => {
             if (response.status === 201) {
                 console.log(response.data);
                 alert("Signup Successful");
-                navigate("/");
+                window.location.href = "/"
             } else {
                 console.error( response.status,'Signup failed');
             }
@@ -46,7 +45,7 @@ const Signup = () => {
 
     return (
         <>
-        {accessTokenCookie ? (<></>) :
+        {auth.hasaccessToken ? (<></>) :
         (<div className="container">
             <Form>
                 <InputGroup

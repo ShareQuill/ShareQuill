@@ -5,21 +5,14 @@ import Mainfooter from "./footer";
 import ProductCard from "../../components/card/card";
 
 const Main = () => {
-  return (
-    <>
-      <div className="#">
-        <header id="">
-          <AppHeader />
-        </header>
-        <main>
-          <Mainbody />
-          <ProductCard />
-        </main>
-      </div>
-      <footer>
-        <Mainfooter />
-      </footer>
-    </>
-  );
+return(
+  <>
+    <AppHeader/>
+    <Mainbody/>
+    <ProductCard/>
+    <Productgallery/>
+    <Mainfooter/>
+  </>
+);
 };
 export default Main;
