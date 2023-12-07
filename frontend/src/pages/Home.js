@@ -30,13 +30,13 @@ const Home = () => {
           className="container"
           key={product._id}
           onClick={() => {
-            navigate(`/products/${product._id}`, { product: {product} });
+            navigate(`/products/${product._id}`, { state: { product } });
           }}
         >
           <Card style={{ width: "20rem" }}>
             <Card.Img
               variant="top"
-              src={product.imageUrl}
+              src={product.photos_directory.imageUrl[0]}
               style={{ width: "12rem" }}
             />
             <Card.Body>
