@@ -1,10 +1,18 @@
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const allowedKeys = {
+  "signup": ['username', 'email', 'password'],
+  "edit": ['username', 'password', 'email'],
+  "delete": ['email'],
+  "login": ['email', 'password'],
+};
+
+
 exports.signupUser = async (req, res) => {
-  const allowedKeys = ['username', 'email', 'password'];
   const receivedKeys = Object.keys(req.body);
-  const invalidKeys = receivedKeys.filter((key) => !allowedKeys.includes(key));
+  const invalidKeys = receivedKeys.filter((key) => !allowedKeys["signup"].includes(key));
 
   if (invalidKeys.length > 0) {
     return res.status(400).json({ message: 'Invalid parameters in the request body' });
@@ -14,7 +22,7 @@ exports.signupUser = async (req, res) => {
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      res.status(201).json({ message: 'User already exists' });
+      res.status(409).json({ message: 'User already exists' });
       return;
     }
 
@@ -22,7 +30,7 @@ exports.signupUser = async (req, res) => {
     const token = jwt.sign({ userId: user.id, username: user.username }, process.env.JWT_KEY, { expiresIn: '1h' });  
     await user.save();
 
-    res.cookie('userAccessToken', token, { httpOnly: true, maxAge: 3600000, secure: true });
+    res.cookie('userAccessToken', token);
 
     res.status(201).json({ message: 'User signed up successfully' });
   } catch (error) {
@@ -31,6 +39,12 @@ exports.signupUser = async (req, res) => {
 };
 
 exports.editUser = async (req, res) => {
+  const receivedKeys = Object.keys(req.body);
+  const invalidKeys = receivedKeys.filter((key) => !allowedKeys["edit"].includes(key));
+
+  if (invalidKeys.length > 0) {
+    return res.status(400).json({ message: 'Invalid parameters in the request body' });
+  }
   const { username, password, email } = req.body;
 
   try {
@@ -49,6 +63,12 @@ exports.editUser = async (req, res) => {
 };
 
 exports.deleteUser = async (req, res) => {
+  const receivedKeys = Object.keys(req.body);
+  const invalidKeys = receivedKeys.filter((key) => !allowedKeys["delete"].includes(key));
+
+  if (invalidKeys.length > 0) {
+    return res.status(400).json({ message: 'Invalid parameters in the request body' });
+  }
   const { email } = req.body;
 
   try {
@@ -63,6 +83,13 @@ exports.deleteUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
+  const receivedKeys = Object.keys(req.body);
+  const invalidKeys = receivedKeys.filter((key) => !allowedKeys["login"].includes(key));
+
+  if (invalidKeys.length > 0) {
+    return res.status(400).json({ message: 'Invalid parameters in the request body' });
+  }
+
   const { email, password } = req.body;
 
   try {
@@ -71,13 +98,16 @@ exports.loginUser = async (req, res) => {
       throw new Error('User not found');
     }
 
-    const isPasswordMatch = password === user.password;
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       throw new Error('Invalid password');
     }
+
+    const token = jwt.sign({ userId: user.id, username: user.username }, process.env.JWT_KEY, { expiresIn: '1h' });
+    res.cookie('userAccessToken', token);
     res.json({ message: 'Login successful' });
   } catch (error) {
     console.log(error)
-    res.status(401).json({ message: 'Authentication failed' });
+    res.status(404).json({ message: 'Login Failed' });
   }
 };
