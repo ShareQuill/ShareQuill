@@ -111,3 +111,13 @@ exports.loginUser = async (req, res) => {
     res.status(404).json({ message: 'Login Failed' });
   }
 };
+
+exports.logoutUser = async (req, res) => {
+  try {
+    res.clearCookie('userAccessToken');
+    res.json({ success: true, message: 'Logged out successfully' });
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
