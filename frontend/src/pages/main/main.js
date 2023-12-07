@@ -8,19 +8,11 @@ import ProductCard from '../../components/card/card';
 const Main = () => {
 return(
   <>
-  <div className='#'>
-    <header id='' >
     <AppHeader/>
-    </header>
-    <main>
     <Mainbody/>
     <ProductCard/>
     <Productgallery/>
-    </main> 
-  </div>
-  <footer>
     <Mainfooter/>
-  </footer>
   </>
   
    

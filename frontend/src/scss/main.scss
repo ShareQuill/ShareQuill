@@ -1,9 +1,8 @@
 @import 'config';
 @import '_responsive';
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
 
 *{
-  font-family: "Helvetica Now Text",Helvetica,Arial,sans-serif;
+  font-family: $font-family;
 }
 
 main{
@@ -21,7 +20,7 @@ main{
     color: black;
   }
   .nohover:hover{
-    cursor: none;
+    cursor: default;
   }
 
 }
