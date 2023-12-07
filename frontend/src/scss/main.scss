@@ -25,6 +25,7 @@ main{
 
 }
 .nav_bar1{
+  position: fixed;
   font-family: "Helvetica Now Text",Helvetica,Arial,sans-serif;
   background-color: rgb(255, 255, 255) !important;
   .nav_bar1_text{
@@ -57,23 +58,6 @@ main{
   justify-content: space-around;
 }
 
-.megamenu {
-  position: static;
-}
-
-.megamenu .dropdown-menu {
-  background: none;
-  border: none;
-  width: 100%;
-}
-
-.text-uppercase {
-  letter-spacing: 0.08em;
-}
-.megaimaga
-{
-  background: center center url("https://therichpost.com/wp-content/uploads/2021/11/mega.png")no-repeat; background-size: cover;
-}
 
 .text-reset{
   text-decoration: none;
@@ -102,6 +86,27 @@ main{
 }
 
 .foo_text_header{
-  font-size: small;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 0.9rem;
 
 }
+
+
+.card-display{
+  box-shadow: 1.1rem 1.1rem 1.1rem rgba(134, 134, 134, 0.5);
+  color: #990e0e;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  .btn-float {
+    margin-top: 8%;
+    margin-bottom: 8%;
+    border-radius: 2rem;
+    background-color: black;
+  }
+  .btn-float:hover {
+    box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
+  }
+}
+

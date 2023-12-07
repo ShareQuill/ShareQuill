@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const uuid = require('uuid');
+const uuid = require("uuid");
 const serviceAccount = require("../config/sharequill-t13-firebase-adminsdk-2ecq3-9d5d7d91de.json");
 
 const ProductsModel = require("../models/productsModel");
@@ -8,6 +8,7 @@ exports.productsHomePage = async (req, res) => {
   try {
     const existingProducts = await ProductsModel.find();
     if (existingProducts) {
+      console.log("[FETCH] Displaying products for Home Page");
       res.status(200).json(existingProducts);
       return;
     }
@@ -66,6 +67,20 @@ exports.postImages = async (req, res) => {
     res.json({ imageUrl: downloadUrls });
   } catch (error) {
     console.error("[ERROR] Error Uploading Images:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.filterCategory = async (req, res) => {
+  const { category } = req.params;
+  try {
+    const productsInCategory = await ProductsModel.find({
+      category: { $regex: new RegExp(category, "i") },
+    });
+    console.log(`[FETCH] Displaying products for ${category}`);
+    res.json(productsInCategory);
+  } catch (error) {
+    console.error("[ERROR] ", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
