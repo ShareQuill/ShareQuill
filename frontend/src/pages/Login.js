@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import InputGroup from '../components/inputs/InputGroup';
 import InputButton from '../components/buttons/InputButton';
-import '../scss/styles.scss'; 
+import '../scss/login.scss'; 
 import axios from 'axios';
 
 const Login = () => {
@@ -54,13 +54,13 @@ const Login = () => {
             onChange={setEmail}
             controlId="formBasicEmail"/>
 
-            <InputGroup
-                label="Password"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={setPassword}
-                controlId="formBasicPassword"/>
+                    <InputGroup
+                        label="Password"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={setPassword}
+                        controlId="formBasicPassword"/>
 
             <InputButton text="Login" onClick={handleLogin} />
         </Form>
