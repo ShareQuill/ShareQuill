@@ -1,12 +1,15 @@
 import AppHeader from "../../components/header/header";
 import Mainbody from "./body";
 import Mainfooter from "./footer";
-import ProductCard from "../../components/card/card";
+import Recentproduct from "./Recentproduct";
 
 const Main = () => {
 return(
   <>
-  <AppHeader/> 
+  <AppHeader/>
+  <Mainbody/>
+  <Recentproduct/>
+  <Mainfooter/> 
   </>
 );
 };
