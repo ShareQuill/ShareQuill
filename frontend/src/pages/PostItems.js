@@ -3,15 +3,15 @@ import { Button } from 'react-bootstrap';
 
 const PostItems = () => {
   const [selectedImages, setSelectedImages] = useState([]);
+  const [imageURLs, setImageURLs] = useState([]);
 
   const handleImageChange = (e) => {
     const files = e.target.files;
 
     if (files.length > 0) {
-      console.log("Selected files:", files);
       setSelectedImages(files);
     } else {
-      console.error("No files selected");
+      console.error("[ERROR] No files selected");
     }
   };
 
@@ -31,6 +31,7 @@ const PostItems = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          setImageURLs(data);
           console.log("Images uploaded successfully:", data);
         })
         .catch((error) => {
@@ -39,30 +40,25 @@ const PostItems = () => {
     }
   };
 
-  useEffect(() => {
-    // This will log the updated value of selectedImages
-    console.log(selectedImages);
-  }, [selectedImages]);
-
   const postData = {
-    category: "Electronics",
-    sub_category: "Latest Printers",
-    type: "laser_printers",
-    name: "Printer Name",
-    description: "Item Description",
+    category: "Clothings",
+    sub_category: "Men",
+    type: "Jackets",
+    name: "Winter Jacket - Vayanga",
+    description: "Wind Proof, Water Proof",
     condition: "excellent",
     age: "less_than_3_months",
     rates: {
-      hourly_rate: "",
-      daily_rate: "",
-      weekly_rate: "",
-      monthly_rate: "",
-      sale: "",
+      hourly_rate: 10,
+      daily_rate: 8,
+      weekly_rate: 5,
+      monthly_rate: 3,
+      sale: 15,
     },
     location: {
       apartment_name: "Sample Apartment",
       area: "Downtown",
-      zip_code: "12345",
+      zip_code: 12345,
       city: "Sample City",
       state: "Sample State",
     },
@@ -72,7 +68,7 @@ const PostItems = () => {
 
   const handleSubmit = () => {
     // Send formData to the backend (you can use fetch or axios)
-    console.log(postData);
+    postData.photos_directory = imageURLs;
     fetch("http://localhost:5000/api/products/specs/post", {
       method: "POST",
       headers: {

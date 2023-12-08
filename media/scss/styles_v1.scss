@@ -323,6 +323,14 @@ footer {
     }
 }
 
+.btn-float {
+    margin-top: 8%;
+    border-radius: 2rem;
+}
+.btn-float:hover {
+    box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
+}
+
 .namelogo1 {
     width: 10%;
 }

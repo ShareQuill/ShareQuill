@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button } from "react-bootstrap";
-import "../scss/styles.scss";
-import ProductDisplay from "../components/partials/ProductDisplay";
+import ProductDisplay from "../partials/ProductDisplay";
 
-const Home = () => {
+function ProductCard() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -23,12 +21,12 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="container d-flex space-between">
       {products.map((product) => (
         <ProductDisplay product={product} key={product._id} />
       ))}
-    </>
+    </div>
   );
-};
+}
 
-export default Home;
+export default ProductCard;

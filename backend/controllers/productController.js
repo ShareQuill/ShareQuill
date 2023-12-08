@@ -1,4 +1,5 @@
 const admin = require("firebase-admin");
+const uuid = require("uuid");
 const serviceAccount = require("../config/sharequill-t13-firebase-adminsdk-2ecq3-9d5d7d91de.json");
 
 const ProductsModel = require("../models/productsModel");
@@ -7,6 +8,7 @@ exports.productsHomePage = async (req, res) => {
   try {
     const existingProducts = await ProductsModel.find();
     if (existingProducts) {
+      console.log("[FETCH] Displaying products for Home Page");
       res.status(200).json(existingProducts);
       return;
     }
@@ -21,10 +23,9 @@ exports.postSpecs = async (req, res) => {
     const postData = req.body;
     const productInstance = new ProductsModel(postData);
     await productInstance.save();
-
-    console.log("Received form data:", postData);
     res.json({ message: "Form data received successfully!" });
   } catch (error) {
+    console.error("[ERROR] ", error);
     res.status(400).json({ message: error.message });
   }
 };
@@ -38,7 +39,7 @@ exports.postImages = async (req, res) => {
   // Access the uploaded file from req.file
   const images = req.files;
   const bucket = admin.storage().bucket();
-  const directoryName = "Sample_Directory/";
+  const directoryName = `${uuid.v4()}/`;
 
   try {
     const uploadPromises = images.map((image) => {
@@ -61,12 +62,25 @@ exports.postImages = async (req, res) => {
 
     const downloadUrls = await Promise.all(downloadUrlsPromises);
 
-    console.log("All images uploaded to Firebase Storage");
-    console.log("Public Accessible URLs:", downloadUrls);
+    console.log("[FIREBASE] All images uploaded to Firebase Storage");
 
     res.json({ imageUrl: downloadUrls });
   } catch (error) {
-    console.error("Error uploading images:", error);
+    console.error("[ERROR] Error Uploading Images:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.filterCategory = async (req, res) => {
+  const { category } = req.params;
+  try {
+    const productsInCategory = await ProductsModel.find({
+      category: { $regex: new RegExp(category, "i") },
+    });
+    console.log(`[FETCH] Displaying products for ${category}`);
+    res.json(productsInCategory);
+  } catch (error) {
+    console.error("[ERROR] ", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
