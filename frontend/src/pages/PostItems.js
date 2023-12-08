@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Button } from 'react-bootstrap';
 
 const PostItems = () => {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -95,9 +94,8 @@ const PostItems = () => {
           multiple
           onChange={handleImageChange}
         />
-        <Button onClick={handleImageUpload}>Upload Image</Button>
+        
       </div>
-      <Button onClick={handleSubmit}>Click Here</Button>
     </>
   );
 };

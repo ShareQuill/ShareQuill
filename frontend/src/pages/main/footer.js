@@ -1,84 +1,31 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React from "react";
 
 export default function Mainfooter() {
   return (
-    <footer className='text-center text-lg-start p-4 footercontainer'>
-      <Container className='text-center text-md-start'>
-        <Row className='mt-3'>
-          <Col md="3" lg="4" xl="3" className='mx-auto mb-4'>
-            <h6 className='foo_text_header text-uppercase mb-3'>
-              Company name
-            </h6>
-            <p className='foo_text'>
-              Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit.
-            </p>
-          </Col>
-
-          <Col md="2" lg="2" xl="2" className='mx-auto mb-4'>
-            <h6 className='foo_text_header text-uppercase mb-3'>About ShareQuill</h6>
-            <p>
-              <a href='/' className='foo_text'>
-                About Us
+    <footer class="bg-black-1000 rounded-lg shadow dark:bg-gray-900">
+      <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8 bg-black-1000">
+          <div class="sm:flex sm:items-center sm:justify-between">
+              <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                  <img src="media/logo.png" class="h-8" alt="Logo" />
               </a>
-            </p>
-            <p>
-              <a href='/' className='foo_text'>
-                How it Works
-              </a>
-            </p>
-          </Col>
-
-          <Col md="3" lg="2" xl="2" className='mx-auto mb-4'>
-            <h6 className='foo_text_header text-uppercase mb-3'>Questions</h6>
-            <p>
-              <a href='/' className='foo_text'>
-                Contact Us
-              </a>
-            </p>
-            <p>
-              <a href='/' className='foo_text'>
-                FAQs
-              </a>
-            </p>
-          </Col>
-
-          <Col md="3" lg="2" xl="2" className='mx-auto mb-4'>
-            <h6 className='foo_text_header text-uppercase mb-3'>Legal</h6>
-            <p>
-              <a href='/' className='foo_text'>
-                Terms of Use
-              </a>
-            </p>
-            <p>
-              <a href='/' className='foo_text'>
-                Privacy Policy
-              </a>
-            </p>
-          </Col>
-
-          <Col md="3" lg="2" xl="2" className='mx-auto mb-4'>
-            <h6 className='foo_text_header text-uppercase mb-3'>Other</h6>
-            <p>
-              <a href='/' className='foo_text'>
-                Careers
-              </a>
-            </p>
-            <p>
-              <a href='/' className='foo_text'>
-                Blog
-              </a>
-            </p>
-          </Col>
-        </Row>
-        <div className='foo_text_header'>
-        © 2021 Copyright
-        <a className='text-reset fw-bold'>
-          ShareQuill
-        </a>
-        </div>
-      </Container>
-    </footer>
+              <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-black-50 sm:mb-0 dark:text-gray-400">
+                  <li>
+                      <a href="#" class="hover:underline me-4 md:me-6">About</a>
+                  </li>
+                  <li>
+                      <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                  </li>
+                  <li>
+                      <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+                  </li>
+                  <li>
+                      <a href="#" class="hover:underline">Contact</a>
+                  </li>
+              </ul>
+          </div>
+          <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8 text-black-50" />
+          <span class="block text-sm text-gray-500 sm:text-center text-black-50">© 2023 <a href="/" class="hover:underline">ShareQuill™</a>. All Rights Reserved.</span>
+      </div>
+  </footer>
   );
 }
