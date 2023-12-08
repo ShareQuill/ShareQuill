@@ -278,7 +278,7 @@ export default function Appheader() {
       </Transition.Root>
 
       <header className="relative bg-white">
-        <p className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
         <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     Sign in
@@ -289,7 +289,7 @@ export default function Appheader() {
                     Create account
                   </a>
         </div>
-        </p>
+        </div>
 
         <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="border-gray-200">
