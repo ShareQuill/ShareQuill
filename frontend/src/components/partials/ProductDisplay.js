@@ -13,7 +13,7 @@ const ProductDisplay = ({ product }) => {
 
   return (
     <>
-      <Tilt options={{ max: 25, perspective: 1000, scale: 1.1 }}>
+      <Tilt options={{ max: 25, perspective: 1000 }}>
         <Card className="card-display m-md-4 position-relative">
           <Card.Img variant="top" src={product.photos_directory.imageUrl[0]} />
           <Card.Body className="">

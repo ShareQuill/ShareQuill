@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Home from './pages/Home';
 import Login from './pages/Login';
 import Main from './pages/main/main';
 import ViewProduct from './pages/ViewProduct';
@@ -24,7 +23,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-      {hasAccessToken ? (
+      {!hasAccessToken ? (
         <>
           <Route path="/" element={<Main/>} />
           <Route path="/products/:id" element={<ViewProduct/>} />
