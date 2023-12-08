@@ -94,7 +94,6 @@ const PostItems = () => {
           multiple
           onChange={handleImageChange}
         />
-        
       </div>
     </>
   );
