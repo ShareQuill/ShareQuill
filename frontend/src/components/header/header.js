@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition, Menu} from '@headlessui/react'
 import { Bars3Icon, UserCircleIcon, BellIcon, XMarkIcon, ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline'
+import Chatdrawer from '../drawer/ChatDrawer'
 
 
 
@@ -310,7 +311,7 @@ export default function Appheader() {
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto"
-                    src="media/logo1.png"
+                    src="/media/logo1.png"
                     alt=""
                   />
                 </a>
@@ -423,13 +424,14 @@ export default function Appheader() {
                   </a>
                 </div>
                 {/* Chat */}
-                <div className="flex lg:ml-6">
+                {/* <div className="flex lg:ml-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <ChatBubbleBottomCenterIcon className="h-6 w-6" aria-hidden="true" />
                   </a>
-                </div>
-
+                </div> */}
+                <Chatdrawer/>
+                
                 {/* Profile */}
                 <div className="ml-4 flow-root lg:ml-6 relative">
                   <Menu as="div" className="relative inline-block text-left">
@@ -449,7 +451,7 @@ export default function Appheader() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-96 origin-top-right rounded-md bg-black-50 shadow-lg ">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-95 origin-top-right rounded-md bg-black-50 shadow-lg ">
                       <div className="py-1">
                         <Menu.Item>
                           {({ active }) => (
@@ -473,7 +475,7 @@ export default function Appheader() {
                                   active ? 'bg-gray-100 text-gray-900' : 'text-gray-700','block w-full px-4 py-2 text-left text-sm'
                                 )}
                               >
-                                Sign out
+                                Logout
                               </button>
                             )}
                           </Menu.Item>
