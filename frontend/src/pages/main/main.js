@@ -6,7 +6,7 @@ import ProductCard from "../../components/card/card";
 const Main = () => {
 return(
   <>
-    
+  <AppHeader/> 
   </>
 );
 };
