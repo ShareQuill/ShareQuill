@@ -2,6 +2,8 @@ import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition, Menu} from '@headlessui/react'
 import { Bars3Icon, UserCircleIcon, BellIcon, XMarkIcon, ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline'
 import Chatdrawer from '../drawer/ChatDrawer'
+import { useAuth } from '../../hooks/authRedirectHook'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -135,10 +137,11 @@ function classNames(...classes) {
 
 export default function Appheader() {
   const [open, setOpen] = useState(false)
+  const auth = useAuth();
+  const navigate = useNavigate();
 
   return (
     <div className="bg-white">
-      {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen} style={{backgroundColor: 'white'}}>
           <Transition.Child
@@ -249,29 +252,6 @@ export default function Appheader() {
                   ))}
                 </div>
 
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                      Sign in
-                    </a>
-                  </div>
-                  <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                      Create account
-                    </a>
-                  </div>
-                  <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                      Account settings
-                    </a>
-                  </div>
-                  <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                      Logout  
-                    </a>
-                  </div>
-                </div>
-
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -279,18 +259,19 @@ export default function Appheader() {
       </Transition.Root>
 
       <header className="relative bg-white">
+        { !auth.hasaccessToken && 
         <p className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
         <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                  <a href="/login" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     Sign in
                   </a>
                   <p>|</p>
                   {/* <span className="h-6 w-px bg-gray-200" aria-hidden="true" /> */}
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                  <a href="/signup" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     Create account
                   </a>
         </div>
-        </p>
+        </p>}
 
         <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="border-gray-200">
@@ -317,6 +298,7 @@ export default function Appheader() {
                 </a>
               </div>
               {/* Flyout menus */}
+              <div className="ml-8 lg:flex items-center h-16">
               <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   {navigation.categories.map((category) => (
@@ -349,7 +331,7 @@ export default function Appheader() {
                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                               <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 
-                              <div className="relative bg-black-50">
+                              <div className="relative bg-black-50" style={{zIndex: 1}}>
                                 <div className="mx-auto max-w-7xl px-8">
                                   <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
                                     <div className="col-start-2 grid grid-cols-2 gap-x-8">
@@ -415,7 +397,9 @@ export default function Appheader() {
                   ))}
                 </div>
               </Popover.Group>
+              </div>
 
+                { auth.hasaccessToken && 
               <div className="ml-auto flex items-center">
                 <div className="flex lg:ml-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
@@ -423,21 +407,12 @@ export default function Appheader() {
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                   </a>
                 </div>
-                {/* Chat */}
-                {/* <div className="flex lg:ml-6">
-                  <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
-                    <span className="sr-only">Search</span>
-                    <ChatBubbleBottomCenterIcon className="h-6 w-6" aria-hidden="true" />
-                  </a>
-                </div> */}
                 <Chatdrawer/>
                 
-                {/* Profile */}
                 <div className="ml-4 flow-root lg:ml-6 relative">
                   <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ">
-                      <span className="sr-only">Search</span>
                       <UserCircleIcon className="h-6 w-6" aria-hidden="true" />
                     </Menu.Button>
                   </div>
@@ -466,26 +441,24 @@ export default function Appheader() {
                             </a>
                           )}
                         </Menu.Item>
-                        <form method="POST" action="#">
                           <Menu.Item>
                             {({ active }) => (
-                              <button
-                                type="submit"
+                              <a
+                                href="/logout"
                                 className={classNames(
                                   active ? 'bg-gray-100 text-gray-900' : 'text-gray-700','block w-full px-4 py-2 text-left text-sm'
                                 )}
                               >
                                 Logout
-                              </button>
+                              </a>
                             )}
                           </Menu.Item>
-                        </form>
                       </div>
                     </Menu.Items>
                   </Transition>
                 </Menu>
               </div>
-              </div>
+              </div>}
             </div>
           </div>
         </nav>
