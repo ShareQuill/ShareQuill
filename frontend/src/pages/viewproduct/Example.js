@@ -1,51 +1,40 @@
-const products = [
-  {
-    id: 1,
-    name: "Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-];
+import React, { useState } from 'react'
 
-export default function Example({ product }) {
-  return (
-    <div className="bg-white">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-          {product.name}
-        </h2>
+const Example = ({product}) => {
+    const [activeImg, setActiveImage] = useState(product.photos_directory.imageUrl[0])
 
-        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          
-            <div key={product._id} className="group relative">
-              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                <img
-                  src={product.photos_directory.imageUrl[0]}
-                  // alt={product.imageAlt}
-                  className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                />
-              </div>
-              <div className="mt-4 flex justify-between">
-                <div>
-                  <h3 className="text-sm text-gray-700">
-                    <a href={product.href}>
-                      <span aria-hidden="true" className="absolute inset-0" />
-                      {product.description}
-                    </a>
-                  </h3>
-                  {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
+    return (
+        <div className='flex flex-col justify-between lg:flex-row gap-16 lg:items-center '>
+            <div className='flex flex-col gap-6 lg:w-2/4'>
+                <img src={activeImg} alt="" className='w-25 h-25 aspect-square object-cover rounded-xl'/>
+                <div className='flex flex-row justify-between h-24'>
+                  {(product.photos_directory.imageUrl).map((image) =>
+                  <img src={image} alt={product.name} className='w-24 h-24 rounded-md cursor-pointer' onClick={() => setActiveImage(image)}/>
+                   )}
                 </div>
-                <p className="text-sm font-medium text-gray-900">
-                  {product.rates.hourly_rate}
+            </div>
+            {/* ABOUT */}
+            <div className='flex flex-col gap-4 lg:w-2/4'>
+                <div>
+                    <span className=' text-violet-600 font-semibold'>Special Sneaker</span>
+                    <h1 className='text-3xl font-bold'>Nike Invincible 3</h1>
+                </div>
+                <p className='text-gray-700'>
+                Con un'ammortizzazione incredibile per sostenerti in tutti i tuoi chilometri, Invincible 3 offre un livello di comfort elevatissimo sotto il piede per aiutarti a dare il massimo oggi, domani e oltre. Questo modello incredibilmente elastico e sostenitivo, è pensato per dare il massimo lungo il tuo percorso preferito e fare ritorno a casa carico di energia, in attesa della prossima corsa.
                 </p>
-              </div>
+                <p className='text-gray-700'>
+                <span className=' text-violet-600 font-semibold'>Address : </span>
+                163 Calumet Street, Boston, MA, 02120
+                </p>
+                <h6 className='text-2xl font-semibold'>$ 199.00</h6>
+                <div className='flex flex-row items-center gap-12'>
+                    <a href="#" className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">
+                    Rent now
+                    </a>
+                </div>
             </div>
         </div>
-      </div>
-    </div>
-  );
+    )
 }
+
+export default Example

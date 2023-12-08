@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import Example from "./Example";
+import Appheader from "../../components/header/header";
+import Mainfooter from "../main/footer";
 
 const ViewProduct = () => {
   const location = useLocation();
