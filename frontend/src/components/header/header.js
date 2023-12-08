@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
+import { Dialog, Popover, Tab, Transition, Menu} from '@headlessui/react'
 import { Bars3Icon, UserCircleIcon, BellIcon, XMarkIcon, ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline'
 
 
@@ -139,7 +139,7 @@ export default function Appheader() {
     <div className="bg-white">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
+        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen} style={{backgroundColor: 'white'}}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -149,7 +149,7 @@ export default function Appheader() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0 bg-black-50" />
           </Transition.Child>
 
           <div className="fixed inset-0 z-40 flex">
@@ -177,7 +177,7 @@ export default function Appheader() {
 
                 {/* Links */}
                 <Tab.Group as="div" className="mt-2">
-                  <div className="border-b border-gray-200">
+                  <div className="border-gray-200">
                     <Tab.List className="-mb-px flex space-x-8 px-4">
                       {navigation.categories.map((category) => (
                         <Tab
@@ -259,6 +259,16 @@ export default function Appheader() {
                       Create account
                     </a>
                   </div>
+                  <div className="flow-root">
+                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                      Account settings
+                    </a>
+                  </div>
+                  <div className="flow-root">
+                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                      Logout  
+                    </a>
+                  </div>
                 </div>
 
               </Dialog.Panel>
@@ -268,12 +278,13 @@ export default function Appheader() {
       </Transition.Root>
 
       <header className="relative bg-white">
-        <p className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
         <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     Sign in
                   </a>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+                  <p>|</p>
+                  {/* <span className="h-6 w-px bg-gray-200" aria-hidden="true" /> */}
                   <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     Create account
                   </a>
@@ -281,7 +292,7 @@ export default function Appheader() {
         </p>
 
         <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="border-b border-gray-200">
+          <div className="border-gray-200">
             <div className="flex h-16 items-center">
               <button
                 type="button"
@@ -304,7 +315,6 @@ export default function Appheader() {
                   />
                 </a>
               </div>
-
               {/* Flyout menus */}
               <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
@@ -316,9 +326,9 @@ export default function Appheader() {
                             <Popover.Button
                               className={classNames(
                                 open
-                                  ? 'border-indigo-600 text-indigo-600'
+                                  ? 'border-indigo-600 border-b-2 text-indigo-600'
                                   : 'border-transparent text-gray-700 hover:text-gray-800',
-                                'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
+                                'relative z-10 -mb-px flex items-center  pt-px text-sm font-medium transition-colors duration-200 ease-out'
                               )}
                             >
                               {category.name}
@@ -334,11 +344,11 @@ export default function Appheader() {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                           >
-                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
+                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500 bg-black-50">
                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                               <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 
-                              <div className="relative bg-white">
+                              <div className="relative bg-black-50">
                                 <div className="mx-auto max-w-7xl px-8">
                                   <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
                                     <div className="col-start-2 grid grid-cols-2 gap-x-8">
@@ -422,27 +432,62 @@ export default function Appheader() {
 
                 {/* Profile */}
                 <div className="ml-4 flow-root lg:ml-6 relative">
-                  <a href="#" className="group -m-2 flex items-center p-2">
-                    <UserCircleIcon
-                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                  </a>
-
-                  {/* Dropdown Content */}
-                  <div className="absolute hidden mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg group-hover:block">
-                    {/* Dropdown Items */}
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Item 1</a>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Item 2</a>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Item 3</a>
-                    {/* Add more items as needed */}
+                  <Menu as="div" className="relative inline-block text-left">
+                  <div>
+                    <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ">
+                      <span className="sr-only">Search</span>
+                      <UserCircleIcon className="h-6 w-6" aria-hidden="true" />
+                    </Menu.Button>
                   </div>
-                </div>
+
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-96 origin-top-right rounded-md bg-black-50 shadow-lg ">
+                      <div className="py-1">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                'block px-4 py-2 text-sm'
+                              )}
+                            >
+                              Account settings
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <form method="POST" action="#">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <button
+                                type="submit"
+                                className={classNames(
+                                  active ? 'bg-gray-100 text-gray-900' : 'text-gray-700','block w-full px-4 py-2 text-left text-sm'
+                                )}
+                              >
+                                Sign out
+                              </button>
+                            )}
+                          </Menu.Item>
+                        </form>
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+              </div>
               </div>
             </div>
           </div>
         </nav>
       </header>
     </div>
-  )
+  );
 }
