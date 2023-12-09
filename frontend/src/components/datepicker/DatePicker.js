@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 
-const Calendar = ({ setNoOfDays, price, setPrice }) => {
+const DatePicker = ({ setNoOfDays, price, setPrice, setDateSelected }) => {
   const [value, setValue] = useState({
-    startDate: null,
-    endDate: null,
+    startDate: new Date(),
+    endDate: new Date().setMonth(11),
   });
 
   const handleValueChange = (newValue) => {
@@ -15,14 +15,18 @@ const Calendar = ({ setNoOfDays, price, setPrice }) => {
     setNoOfDays(noOfDays);
     setPrice(price * noOfDays);
     setValue(newValue);
+    console.log(noOfDays);
+    setDateSelected(noOfDays);
   };
 
   return (
     <Datepicker
       toggleClassName="absolute bg-blue-300 rounded-r-lg text-white right-0 h-full px-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed"
       value={value}
+      primaryColor="dark"
       onChange={handleValueChange}
+      showShortcuts={true}
     />
   );
 };
-export default Calendar;
+export default DatePicker;
