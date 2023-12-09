@@ -20,6 +20,7 @@ const productSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
+    set: (value) => value.toLowerCase().replace(/\s+/g, ''),
   },
   name: {
     type: String,
