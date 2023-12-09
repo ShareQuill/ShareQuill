@@ -1,60 +1,57 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import MessageSelf from "./MessageSelf";
-import MessageOthers from "./MessageOthers";
+// Chat.js
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+import axios from 'axios';
 
-const ChatArea = ({ chatId, userId }) => {
+const socket = io.connect('http://localhost:3001/chat');
+
+const Chat = ({ username }) => {
+    const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const [newMessage, setNewMessage] = useState("");
 
     useEffect(() => {
-        const fetchMessages = async () => {
-            try {
-                const response = await axios.get(`http://localhost:6000/chat/${chatId}/messages`);
-                setMessages(response.data);
-            } catch (error) {
-                console.error("Error fetching messages:", error);
-            }
+        socket.on('load messages', (loadedMessages) => {
+            setMessages(loadedMessages);
+        });
+
+        socket.on('message', (newMessage) => {
+            setMessages((prevMessages) => [...prevMessages, newMessage]);
+        });
+
+        return () => {
+            socket.disconnect();
         };
+    }, []);
 
-        fetchMessages();
-    }, [chatId, newMessage]); // Include newMessage as a dependency if needed
+    // const sendMessage = () => {
+    //     if (message.trim() !== '') {
+    //         const data = { username, message };
+    //         socket.emit('message', data);
+    //         setMessage('');
 
-    const handleSendMessage = async () => {
-        try {
-            await axios.post(`http://localhost:6000/chat/${chatId}/messages`, {
-                content: newMessage,
-                chatId,
-            });
-
-            // No need to fetch messages here; useEffect will handle it
-
-            setNewMessage("");
-        } catch (error) {
-            console.error("Error sending message:", error);
-        }
-    };
+    //         // Save the message to the database
+    //         axios.post('http://localhost:3001/api/messages', data)
+    //             .then((response) => console.log(response))
+    //             .catch((error) => console.error(error));
+    //     }
+    // };
 
     return (
         <div>
-            <div>
-                {messages.map((message) => (
-                    <div key={message._id}>
-                        {message.sender._id === userId ? (
-                            <MessageSelf props={message} />
-                        ) : (
-                            <MessageOthers props={message} />
-                        )}
+            <div style={{ height: '300px', border: '1px solid #ccc', overflowY: 'auto' }}>
+                {messages.map((msg, index) => (
+                    <div key={index}>
+                        <strong>{msg.username}:</strong> {msg.message}
                     </div>
                 ))}
             </div>
             <div>
                 <input
                     type="text"
-                    value={newMessage}
-                    onChange={(e) => setNewMessage(e.target.value)}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                 />
-                <button onClick={handleSendMessage}>Send</button>
+                <button onClick={sendMessage}>Send</button>
             </div>
         </div>
     );

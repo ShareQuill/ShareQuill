@@ -18,6 +18,7 @@ const allMessages = expressAsyncHandler(async (req, res) => {
 
 const sendMessage = expressAsyncHandler(async (req, res) => {
   const { content, chatId } = req.body;
+  // Pass email id instead of chat id
 
   if (!content || !chatId) {
     console.log("Invalid data passed into request");

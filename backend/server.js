@@ -1,35 +1,89 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const apiRoutes = require('./routers/apiRoutes');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-require('dotenv').config();
+require('dotenv').config(); // Load environment variables from .env file
 
-const dbName = process.env.MONGO_DB_NAME;
+const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io');
+const mongoose = require('mongoose');
 
 const app = express();
-app.use(express.json());
-app.use(cookieParser(
-  process.env.COOKIE_SECRET,
-  { httpOnly: true, maxAge: 30 * 3600000, secure: true, sameSite: 'None' }
-));
+const server = http.createServer(app);
+const io = socketIO(server, { path: '/chat' });
 
-app.use(cors({
-  origin: 'http://localhost:3000', 
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-}));
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-app.use('/api', apiRoutes);
+const messageSchema = new mongoose.Schema({
+  username: String,
+  message: String,
+});
 
-const connectToMongoDB = async () => {
-  const connection = await mongoose.connect(process.env.MONGODB_URI + `${dbName}`);
-  console.log(`[MONGO DB] ${connection.version} Connected to MongoDB - ${dbName}`);
+const Message = mongoose.model('Message', messageSchema);
+
+socketUserMapping = {}
+
+io.use((socket, next) => {
+  const username = socket.handshake.auth.username;
+  if (!username) {
+    return next(new Error("invalid username"));
+  }
+  socket.username = username;
+  socketUserMapping[username] = socket;
+  next();
+})
+
+io.on('connection', (socket) => {
+  socket.emit('socketid', socket.id);
+  createSendMessageListener(socket);
+  createDisconnectListener(socket);
+  console.log(socket.id);
+  console.log("Created a new socket");
+  return {
+    statusCode: 200,
+  };
+});
+
+function createSendMessageListener(socket) {
+  socket.on('send-message', ({ destId, payload }) => {
+    destSocket = socketUserMapping[destId]
+    if (!destSocket) {
+      console.log("Unknown dest id. Ignoring message.");
+      return;
+    }
+    console.log(payload);
+    destSocket.emit('stream-message', payload)
+  });
 }
 
-connectToMongoDB();
+function createDisconnectListener(socket) {
+  socket.on('disconnect', (reason) => {
+    for (const [userid, socketObject] of Object.entries(socketUserMapping)) {
+      if (socketObject.id !== socket.id) continue;
+      delete socketUserMapping[socket];
+      break;
+    }
+  });
+}
 
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`[SERVER] Server is running on port ${PORT}`);
+const PORT = process.env.PORT || 3001;
+
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+app.use(express.json());
+
+app.post('/api/messages', (req, res) => {
+  const { username, message } = req.body;
+  const newMessage = new Message({ username, message });
+
+  newMessage.save((err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal Server Error' });
+    } else {
+      res.status(201).json({ message: 'Message saved successfully' });
+    }
+  });
 });
