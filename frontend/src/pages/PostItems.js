@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Form from "../components/form/Form";
+import Appheader from "../components/header/header";
+import Mainfooter from "./main/footer";
 
 const PostItems = () => {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -86,7 +89,10 @@ const PostItems = () => {
 
   return (
     <>
-      <div>
+    <Appheader/>
+    <Form/>
+    <Mainfooter/>
+      {/* <div>
         <input
           type="file"
           accept="image/*"
@@ -95,8 +101,9 @@ const PostItems = () => {
           onChange={handleImageChange}
         />
         <button onClick={handleImageUpload}>Upload Image</button>
+        <button onClick={handleImageUpload}>Upload Image</button>
       </div>
-      <button onClick={handleSubmit}>Post Product</button>
+      <button onClick={handleSubmit}>Submit Form</button> */}
     </>
   );
 };

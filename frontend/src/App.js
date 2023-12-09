@@ -12,6 +12,7 @@ import Success from './pages/Success';
 import Category from "./pages/Category";
 import Allproducts from './pages/productsection/Allproducts';
 import { useAuth } from './hooks/authRedirectHook';
+import AccountSettings from './pages/main/Accountsettings';
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/logout" element={<Logout/>} />
           <Route path="/success" element={<Success/>} />
           <Route path="/products" element={<Allproducts/>}/>
+          <Route path="/settings" element={<AccountSettings/>}/>
         </>}
           <Route path="/products/category/:category" element={<Category />} />
           <Route path="/products/:id" element={<ViewProduct/>} />
