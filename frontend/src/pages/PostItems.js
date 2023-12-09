@@ -94,7 +94,9 @@ const PostItems = () => {
           multiple
           onChange={handleImageChange}
         />
+        <button onClick={handleImageUpload}>Upload Image</button>
       </div>
+      <button onClick={handleSubmit}>Submit Form</button>
     </>
   );
 };

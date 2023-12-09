@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition, Menu} from '@headlessui/react'
-import { Bars3Icon, UserCircleIcon, BellIcon, XMarkIcon, ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline'
+import { ArrowUpOnSquareStackIcon, Bars3Icon, UserCircleIcon, BellIcon, XMarkIcon, ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline'
 import Chatdrawer from '../drawer/ChatDrawer'
 import { useAuth } from '../../hooks/authRedirectHook'
 import { useNavigate } from 'react-router-dom'
@@ -11,123 +11,157 @@ import { useNavigate } from 'react-router-dom'
 const navigation = {
   categories: [
     {
-      id: 'women',
-      name: 'Women',
+      id: 'electronics',
+      name: 'Electronics',
       featured: [
         {
-          name: 'New Arrivals',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
-          imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
+          name: 'Computers',
+          imageSrc: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 ',
+          imageAlt: 'computer',
         },
         {
-          name: 'Basic Tees',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
-          imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
+          name: 'Gaming monitors',
+          imageSrc: 'https://images.pexels.com/photos/7915357/pexels-photo-7915357.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          imageAlt: 'gaming monitor',
         },
       ],
       sections: [
         {
-          id: 'clothing',
-          name: 'Clothing',
+          id: 'laptops',
+          name: 'Laptops',
           items: [
-            { name: 'Tops', href: '#' },
-            { name: 'Dresses', href: '#' },
-            { name: 'Pants', href: '#' },
-            { name: 'Denim', href: '#' },
-            { name: 'Sweaters', href: '#' },
-            { name: 'T-Shirts', href: '#' },
-            { name: 'Jackets', href: '#' },
-            { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            { name: 'Laptop bag'},
+            { name: 'Laptops'},
           ],
         },
         {
-          id: 'accessories',
-          name: 'Accessories',
+          id: 'grooming appliances',
+          name: 'Grooming appliances',
           items: [
-            { name: 'Watches', href: '#' },
-            { name: 'Wallets', href: '#' },
-            { name: 'Bags', href: '#' },
-            { name: 'Sunglasses', href: '#' },
-            { name: 'Hats', href: '#' },
-            { name: 'Belts', href: '#' },
+            { name: 'Hair clipper'},
+            { name: 'Hair straightener'},
+            { name: 'Hairdryer'},
+            { name: 'Other hair care'},
           ],
         },
         {
-          id: 'brands',
-          name: 'Brands',
+          id: 'computers',
+          name: 'Computers and accessories',
           items: [
-            { name: 'Full Nelson', href: '#' },
-            { name: 'My Way', href: '#' },
-            { name: 'Re-Arranged', href: '#' },
-            { name: 'Counterfeit', href: '#' },
-            { name: 'Significant Other', href: '#' },
+            { name: 'Keyboard'},
+            { name: 'Computers'},
+            { name: 'Gaming monitors'},
+            { name: 'Mouse'},
+            { name: 'Storage devices'},
           ],
         },
       ],
     },
     {
-      id: 'men',
-      name: 'Men',
+      id: 'gaming',
+      name: 'Gaming',
       featured: [
         {
-          name: 'New Arrivals',
+          name: 'PlayStation 5',
           href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
-          imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
+          imageSrc: 'https://images.pexels.com/photos/18417233/pexels-photo-18417233/free-photo-of-a-white-controller-sitting-on-top-of-a-white-box.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          imageAlt: 'Playstation 5',
         },
         {
-          name: 'Artwork Tees',
+          name: 'Xbox 360',
           href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
+          imageSrc: 'https://images.pexels.com/photos/18295025/pexels-photo-18295025/free-photo-of-xbox-controller-on-red-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
           imageAlt:
-            'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
+            'Xbox 360',
         },
       ],
       sections: [
         {
-          id: 'clothing',
-          name: 'Clothing',
+          id: 'consoles',
+          name: 'Consoles',
           items: [
-            { name: 'Tops', href: '#' },
-            { name: 'Pants', href: '#' },
-            { name: 'Sweaters', href: '#' },
-            { name: 'T-Shirts', href: '#' },
-            { name: 'Jackets', href: '#' },
-            { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            { name: 'Nintendo switch'},
+            { name: 'PlayStation 4'},
+            { name: 'PlayStation 5'},
+            { name: 'Xbox One'},
+            { name: 'Xbox 360'},
           ],
         },
         {
-          id: 'accessories',
-          name: 'Accessories',
+          id: 'games',
+          name: 'Games',
           items: [
-            { name: 'Watches', href: '#' },
-            { name: 'Wallets', href: '#' },
-            { name: 'Bags', href: '#' },
-            { name: 'Sunglasses', href: '#' },
-            { name: 'Hats', href: '#' },
-            { name: 'Belts', href: '#' },
+            { name: 'PC games'},
+            { name: 'Xbox games'},
+            { name: 'Playstation5 games'},
+            { name: 'Playstation4 games'},
           ],
         },
         {
-          id: 'brands',
-          name: 'Brands',
+          id: 'virtual reality',
+          name: 'Virtual Reality',
           items: [
-            { name: 'Re-Arranged', href: '#' },
-            { name: 'Counterfeit', href: '#' },
-            { name: 'Full Nelson', href: '#' },
-            { name: 'My Way', href: '#' },
+            { name: 'Oculus Rift'},
+            { name: 'Other VR glasses'},
+            { name: 'PlayStation VR'},
+          ],
+        },
+      ],
+    },
+    {
+      id: 'transport',
+      name: 'Transport',
+      featured: [
+        {
+          name: 'E bike',
+          href: '#',
+          imageSrc: 'https://images.pexels.com/photos/3671151/pexels-photo-3671151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          imageAlt: 'E bike.',
+        },
+        {
+          name: 'SUV',
+          href: '#',
+          imageSrc: 'https://images.pexels.com/photos/215529/pexels-photo-215529.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          imageAlt:
+            'SUV',
+        },
+      ],
+      sections: [
+        {
+          id: 'bicycles',
+          name: 'Bicycles',
+          items: [
+            { name: 'City bike' },
+            { name: 'E bike'},
+            { name: 'Mountain bike' },
+            { name: 'Other bicycles' },
+            { name: 'Racing bike' },
+          ],
+        },
+        {
+          id: 'car',
+          name: 'Car',
+          items: [
+            { name: 'Hatchback' },
+            { name: 'Sedan'},
+            { name: 'SUV'},
+          ],
+        },
+        {
+          id: 'car accessories',
+          name: 'Car accessories',
+          items: [
+            { name: 'car lights' },
+            { name: 'Puncture repair kit' },
+            { name: 'Sun shades' },
+            { name: 'Tyre Inflator'},
           ],
         },
       ],
     },
   ],
   pages: [
-    { name: 'Company', href: '#' },
-    { name: 'Stores', href: '#' },
+    { name: 'About Us'},
   ],
 }
 
@@ -229,7 +263,7 @@ export default function Appheader() {
                             >
                               {section.items.map((item) => (
                                 <li key={item.name} className="flow-root">
-                                  <a href={item.href} className="-m-2 block p-2 text-gray-500">
+                                  <a href={"/products/category/"+item.name.toLowerCase().replace(' ','')} className="-m-2 block p-2 text-gray-500">
                                     {item.name}
                                   </a>
                                 </li>
@@ -344,7 +378,7 @@ export default function Appheader() {
                                               className="object-cover object-center"
                                             />
                                           </div>
-                                          <a href={item.href} className="mt-6 block font-medium text-gray-900">
+                                          <a href={"/products/category/"+item.name.toLowerCase().replace(' ','')} className="mt-6 block font-medium text-gray-900">
                                             <span className="absolute inset-0 z-10" aria-hidden="true" />
                                             {item.name}
                                           </a>
@@ -367,7 +401,7 @@ export default function Appheader() {
                                           >
                                             {section.items.map((item) => (
                                               <li key={item.name} className="flex">
-                                                <a href={item.href} className="hover:text-gray-800">
+                                                <a href={"/products/category/"+item.name.toLowerCase().replace(' ','')} className="hover:text-gray-800">
                                                   {item.name}
                                                 </a>
                                               </li>
@@ -401,6 +435,13 @@ export default function Appheader() {
 
                 { auth.hasaccessToken && 
               <div className="ml-auto flex items-center">
+                <div className="flex lg:ml-6">
+                  <p className="p-2 text-gray-400 hover:text-gray-500 font-medium text-gray-900 text-sm">
+                     Start Posting</p>
+                  <a href="/PostItems" className="p-2 text-gray-400 hover:text-gray-500">
+                    <ArrowUpOnSquareStackIcon className="h-6 w-6" aria-hidden="true" />
+                  </a>
+                </div>
                 <div className="flex lg:ml-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
