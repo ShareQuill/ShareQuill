@@ -28,20 +28,16 @@ utilization.</p>
       </div>
       <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
         <div class="flex flex-col-reverse">
-          <dt class="text-base leading-7 text-black-50">Offices worldwide</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-black-50">12</dd>
+          <dt class="text-base leading-7 text-black-50">E-waste saved</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-black-50">1B</dd>
         </div>
         <div class="flex flex-col-reverse">
-          <dt class="text-base leading-7 text-black-50">Full-time colleagues</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-black-50">300+</dd>
+          <dt class="text-base leading-7 text-black-50">Happy Customers</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-black-50">1M</dd>
         </div>
         <div class="flex flex-col-reverse">
-          <dt class="text-base leading-7 text-black-50">Hours per week</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-black-50">40</dd>
-        </div>
-        <div class="flex flex-col-reverse">
-          <dt class="text-base leading-7 text-black-50">Paid time off</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-black-50">Unlimited</dd>
+          <dt class="text-base leading-7 text-black-50">Earned from posting</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-black-50">50M</dd>
         </div>
       </dl>
     </div>

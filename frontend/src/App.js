@@ -13,6 +13,7 @@ import Category from "./pages/Category";
 import Allproducts from './pages/productsection/Allproducts';
 import { useAuth } from './hooks/authRedirectHook';
 import AccountSettings from './pages/main/Accountsettings';
+import ContactMain from './pages/contact/ContactMain';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/success" element={<Success/>} />
           <Route path="/products" element={<Allproducts/>}/>
           <Route path="/settings" element={<AccountSettings/>}/>
+          <Route path="/contact" element={<ContactMain/>}/>
         </>}
           <Route path="/products/category/:category" element={<Category />} />
           <Route path="/products/:id" element={<ViewProduct/>} />
