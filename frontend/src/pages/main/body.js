@@ -85,7 +85,7 @@ export default function Mainbody() {
 
               <a
                 style={{ position: 'aboslute', zIndex: "1" }}
-                href={auth.hasaccessToken ? "/product" : "/login"}
+                href={auth.hasaccessToken ? "/products" : "/login"}
                 className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">
                 Rent now
               </a>
