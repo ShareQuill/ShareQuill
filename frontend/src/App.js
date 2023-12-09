@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import Logout from './pages/Logout';
 import Success from './pages/Success';
 import Category from "./pages/Category";
+import Allproducts from './pages/productsection/Allproducts';
 import { useAuth } from './hooks/authRedirectHook';
 
 
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/" element={<Main/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
+          <Route path="/allproducts" element={<Allproducts/>}/>
       </Routes>
     </Router>
   );
