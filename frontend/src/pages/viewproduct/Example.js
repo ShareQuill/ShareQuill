@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import DatePicker from "../../components/datepicker/DatePicker";
 
 const Example = ({ product, makePayment }) => {
-  const defaultPrice = product.rates.daily_rate;
+  const defaultPrice = product.price;
   const [price, setPrice] = useState(defaultPrice);
   const [noOfDays, setNoOfDays] = useState(1);
   const [activeImg, setActiveImage] = useState(
-    product.photos_directory.imageUrl[0]
+    product.images.imageUrl[0]
   );
   const [dateSelected, setDateSelected] = useState(1);
 
-  const { apartment_name, area, zip_code, city, state } = product.location;
-  const address = `${apartment_name}, ${area}, ${zip_code}, ${city}, ${state}`;
+  const streetAddress = product.streetAddress;
+  const city = product.city;
+  const state = product.state;
+  const zipCode = product.postalCode;
+  const address = `${streetAddress}, ${zipCode}, ${city}, ${state}`;
 
   return (
     <div className="flex flex-col justify-between lg:flex-row gap-16 lg:items-center ">
@@ -22,7 +25,7 @@ const Example = ({ product, makePayment }) => {
           className="w-25 h-25 aspect-square object-cover rounded-xl"
         />
         <div className="flex flex-row justify-between h-24">
-          {product.photos_directory.imageUrl.map((image, index) => (
+          {product.images.imageUrl.map((image, index) => (
             <img
               key={index}
               src={image}

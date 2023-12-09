@@ -2,6 +2,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Fragment, useState } from "react";
 import ProductDisplay from "../../components/partials/ProductDisplay";
+import { Country, State, City } from "country-state-city";
 
 const sortOptions = [
   { name: "Newest", current: true },
@@ -15,6 +16,18 @@ function classNames(...classes) {
 
 export default function Productsection({ products }) {
   const [selectedSort, setSelectedSort] = useState("newest");
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedCity, setSelectedCity] = useState("Boston");
+  const states = State.getStatesOfCountry("US");
+
+  const handleStateChange = (e) => {
+    setSelectedState(e.target.value);
+  };
+
+  const handleCityChange = (e) => {
+    setSelectedCity(e.target.value);
+    handleSortChange("stateAndCity");
+  };
 
   const handleSortChange = (sortValue) => {
     console.log(sortValue);
@@ -25,11 +38,11 @@ export default function Productsection({ products }) {
     switch (selectedSort) {
       case "Price: Low to High":
         return [...products].sort(
-          (a, b) => a.rates.daily_rate - b.rates.daily_rate
+          (a, b) => a.price - b.price
         );
       case "Price: High to Low":
         return [...products].sort(
-          (a, b) => b.rates.daily_rate - a.rates.daily_rate
+          (a, b) => b.price - a.price
         );
       case "Newest":
         return [...products].sort(
@@ -37,6 +50,8 @@ export default function Productsection({ products }) {
             new Date(b.created_time.toString()) -
             new Date(a.created_time.toString())
         );
+      case "stateAndCity":
+        return [...products].filter((a) => ((a.state == selectedState) && (a.city == selectedCity)));
       default:
         // Default to sorting by newest
         return [...products];
@@ -51,6 +66,63 @@ export default function Productsection({ products }) {
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               All products
             </h1>
+
+            
+            {/* State or province */}
+            <div className="sm:col-span-3">
+              <label
+                htmlFor="country"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                State or province
+              </label>
+              <div className="mt-2">
+                <select
+                  id="country"
+                  name="country"
+                  autoComplete="country-name"
+                  onChange={handleStateChange}
+                  value={selectedState}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                  required
+                >
+                  {states.map((state) => (
+                    <option value={state.isoCode} key={state.isoCode}>
+                      {state.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* City */}
+            {selectedState && (
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="country"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  City
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="country"
+                    name="country"
+                    onChange={handleCityChange}
+                    value={selectedCity}
+                    autoComplete="country-name"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    required
+                  >
+                    {City.getCitiesOfState("US", selectedState).map((city) => (
+                      <option value={city.name} key={city.name}>
+                        {city.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            )}
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
