@@ -1,5 +1,4 @@
 import React from "react";
-
 export default function Mainfooter() {
   return (
     <footer className="bg-black-1000 shadow dark:bg-gray-900">

@@ -41,9 +41,9 @@ const ViewProduct = () => {
 
   return (
     <>
-      <Appheader />
-      <Example product={product} makePayment={makePayment} />
-      <Mainfooter />
+    <Appheader/>
+    <Example product={product} makePayment={makePayment} />;
+    <Mainfooter/>
     </>
   );
 };
