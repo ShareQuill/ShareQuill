@@ -1,5 +1,4 @@
 import React from "react";
-
 export default function Mainfooter() {
   return (
     <footer className="bg-black-1000 shadow dark:bg-gray-900">
@@ -19,7 +18,7 @@ export default function Mainfooter() {
                       <a href="#" className="hover:underline me-4 md:me-6">Licensing</a>
                   </li>
                   <li>
-                      <a href="#" className="hover:underline">Contact</a>
+                      <a href="/contact" className="hover:underline">Contact</a>
                   </li>
               </ul>
           </div>

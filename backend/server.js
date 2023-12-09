@@ -15,7 +15,7 @@ app.use(cookieParser(
 ));
 
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: 'https://sharequill-frontend-30d5994f749f.herokuapp.com', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
@@ -29,7 +29,7 @@ const connectToMongoDB = async () => {
 
 connectToMongoDB();
 
-const PORT = 5000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, '0.0.0.0',() => {
   console.log(`[SERVER] Server is running on port ${PORT}`);
 });
