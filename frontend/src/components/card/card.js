@@ -38,9 +38,9 @@ function ProductCard() {
         return [...data].sort(
           (a, b) => new Date(b.created_time) - new Date(a.created_time)
         );
-      case "rates.hourly_rate":
+      case "rates.daily_rate":
         return [...data].sort(
-          (a, b) => a.rates.hourly_rate - b.rates.hourly_rate
+          (a, b) => a.rates.daily_rate - b.rates.daily_rate
         );
       case "name":
         return [...data].sort((a, b) => a.name.localeCompare(b.name));

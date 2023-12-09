@@ -5,13 +5,13 @@ const ProductsSort = ({ sortOption, handleSortChange }) => {
     <div className="sort-options">
       Sort By
       <div className="d-block">
-        <label htmlFor="sort-hourly_rate">Hourly Rate</label>
+        <label htmlFor="sort-daily_rate">Hourly Rate</label>
         <input
           type="radio"
-          id="sort-hourly_rate"
+          id="sort-daily_rate"
           name="sort-by"
-          value="rates.hourly_rate"
-          checked={sortOption === "rates.hourly_rate"}
+          value="rates.daily_rate"
+          checked={sortOption === "rates.daily_rate"}
           onChange={handleSortChange}
         />
       </div>

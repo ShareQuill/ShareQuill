@@ -9,7 +9,9 @@ const ViewProduct = () => {
   const location = useLocation();
   const product = location.state.product;
 
-  const makePayment = async (product) => {
+  const makePayment = async (product, price) => {
+    product["price"] = price;
+    console.log("PRICE | ", price);
     const stripe = await loadStripe(
       "pk_test_51OHtYWHfFaxHofKUsnnno0r5QE3LVagHBag6E53tayznGP6vJtVkQPdSL805NPEHiWXgt7Es4r0NhGhOxRyS0cm500ono6kauf"
     );
@@ -37,9 +39,7 @@ const ViewProduct = () => {
     }
   };
 
-  return ( 
-    <Example product={product}/>
-  );
+  return <Example product={product} makePayment={makePayment} />;
 };
 
 export default ViewProduct;

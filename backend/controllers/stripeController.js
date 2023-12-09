@@ -16,12 +16,7 @@ exports.stripeCheckout = async (req, res) => {
               name: product.name,
               images: [product.photos_directory.imageUrl[0]],
             },
-            unit_amount: product.rates.hourly_rate * 100,
-          },
-          adjustable_quantity: {
-            enabled: true,
-            minimum: 1,
-            maximum: 10,
+            unit_amount: product.price * 100,
           },
           quantity: 1,
         },
