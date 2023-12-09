@@ -25,13 +25,13 @@ const App = () => {
           <Route path="/postItems" element={<PostItems/>} />
           <Route path="/logout" element={<Logout/>} />
           <Route path="/success" element={<Success/>} />
+          <Route path="/products" element={<Allproducts/>}/>
         </>}
           <Route path="/products/category/:category" element={<Category />} />
           <Route path="/products/:id" element={<ViewProduct/>} />
           <Route path="/" element={<Main/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
-          <Route path="/products" element={<Allproducts/>}/>
       </Routes>
     </Router>
   );
