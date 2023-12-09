@@ -48,7 +48,7 @@ const PostItems = () => {
     condition: "excellent",
     age: "less_than_3_months",
     rates: {
-      hourly_rate: 10,
+      daily_rate: 10,
       daily_rate: 8,
       weekly_rate: 5,
       monthly_rate: 3,
@@ -94,7 +94,9 @@ const PostItems = () => {
           multiple
           onChange={handleImageChange}
         />
+        <button onClick={handleImageUpload}>Upload Image</button>
       </div>
+      <button onClick={handleSubmit}>Post Product</button>
     </>
   );
 };

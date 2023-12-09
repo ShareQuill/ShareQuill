@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema({
   condition: { type: String, required: true },
   age: { type: String, required: true },
   rates: {
-    hourly_rate: { type: Number, min: 0 },
+    daily_rate: { type: Number, min: 0 },
     daily_rate: { type: Number, min: 0 },
     weekly_rate: { type: Number, min: 0 },
     monthly_rate: { type: Number, min: 0 },

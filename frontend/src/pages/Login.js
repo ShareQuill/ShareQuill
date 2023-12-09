@@ -15,7 +15,7 @@ const Login = () => {
         }
     })
 
-    const handleLogin = async () => {
+  const handleLogin = async () => {
     try {
         const response = await axios.post('http://localhost:5000/api/user/login', {
             email,
@@ -32,11 +32,10 @@ const Login = () => {
         } else {
             console.error('Login failed');
         }
-        } catch (error) {
-        console.error('Error during login:', error);
-        }
-    };
-
+      } catch (error) {
+        console.error("[ERROR]", error);
+      }
+    }
     return (
         <>
         {auth.hasaccessToken ? (<></>) :
@@ -103,6 +102,6 @@ const Login = () => {
         }
         </>
     );
-};
+}
 
 export default Login;
