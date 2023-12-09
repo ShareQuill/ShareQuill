@@ -1,10 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Appheader from "../../components/header/header";
 import Mainfooter from "./footer";
+import { useAuth } from "../../hooks/authRedirectHook";
+import axios from "axios";
 const iconStyle = {
     textAlign: "center",
   };
 export default function AccountSettings() {
+    const auth = useAuth();
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [saveShow, setSaveShow] = useState(false)
+    useEffect(()=>{
+        const getProfile = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/api/user/get-profile', {
+                    withCredentials: true,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${auth.accessToken}`
+                    },
+                });
+            
+            if(response.status === 200){
+                console.log(response.data)
+                setUsername(response.data.username);
+                setEmail(response.data.email);
+            }
+            } catch (error) {
+                console.error('Error during profle get:', error);
+            }
+        }
+        getProfile();
+    }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.put('http://localhost:5000/api/user/edit', {
+                username,
+                email,
+                password
+            }, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth.accessToken}`
+                },
+            });
+            if(response.status === 200){
+                console.log(response.data)
+                setSaveShow(false)
+            }
+            } catch (error) {
+                console.error('Error during profle post:', error);
+            }
+            
+    }
   return (
     <>
     <Appheader/>
@@ -31,34 +84,50 @@ export default function AccountSettings() {
             <div class="p-4 col-span-6 md:col-span-4">
             <div class="mx-auto grid grid-cols-2 gap-x-8 gap-y-10">
                 <div class="col-span-2 sm:col-span-1">
-                <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name 1</label>
+                <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
                 <div class="mt-2">
-                    <p>name</p>
+                    <p>{email}</p>
                 </div>
                 </div>
 
                 <div class="col-span-2 sm:col-span-1">
-                <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                { saveShow && <>
+                <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Update Password</label>
                 <div class="mt-2">
-                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
-                </div>
+                    <input type="text" name="last-name" id="last-name"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)} 
+                    autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+                </div></>}
+                { !saveShow && <>
+                <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                <p>********</p></>}
                 </div>
 
                 <div class="col-span-2">
-                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
                 <div class="mt-2">
-                    <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+                    {saveShow ? (<input id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)} type="username" autocomplete="username" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>):
+                    (<p>{username}</p>)}
                 </div>
                 </div>
             </div>
 
             <div class="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-                <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+                {saveShow ? (<>
+                <button type="button" class="text-sm font-semibold leading-6 text-gray-900" onClick={()=>setSaveShow(false)}>Cancel</button>
+                <button type="button" 
+                onClick={handleSubmit}
+                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+                </>):(
+                    <button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={()=>setSaveShow(true)}>Edit</button>
+                )
+                }
             </div>
             </div>
         </div>
         </div>
+        <div className="space"></div>
         <Mainfooter/>
     </>
   );

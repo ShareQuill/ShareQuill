@@ -448,7 +448,7 @@ export default function Appheader() {
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                   </a>
                 </div>
-                <Chatdrawer/>
+                
                 
                 <div className="ml-4 flow-root lg:ml-6 relative">
                   <Menu as="div" className="relative inline-block text-left">

@@ -55,10 +55,11 @@ exports.editUser = async (req, res) => {
     }
 
     user.username = username;
-    user.password = password; 
+    user.password = password;
     await user.save();
     res.json({ message: 'User details updated successfully' });
   } catch (error) {
+    console.log(error)
     res.status(404).json({ message: 'User not found' });
   }
 };
@@ -122,3 +123,15 @@ exports.logoutUser = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+exports.profile = async(req,res) => {
+  try {
+    
+    if (!req.user) {
+      throw new Error('User not found');
+    }
+    res.json({ message: 'User profile fetched successfully', email: req.user.email, username: req.user.username });
+  } catch (error) {
+    res.status(404).json({ message: 'User not found' });
+  }
+}
