@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    validate: /^[a-zA-Z0-9._-]+@northeastern\.edu$/,
+    validate: /^[a-zA-Z0-9._-]+@[a-zA-z]\.com$/,
   },
   password: {
     type: String,

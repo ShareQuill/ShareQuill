@@ -2,7 +2,6 @@ import AppHeader from "../../components/header/header";
 import Mainbody from "./body";
 import Mainfooter from "./footer";
 import Recentproduct from "./Recentproduct";
-import AboutUs from "./Aboutus";
 
 const Main = () => {
 return(
@@ -10,7 +9,6 @@ return(
   <AppHeader/>
   <Mainbody/>
   <Recentproduct/>
-  <AboutUs/>
   <Mainfooter/> 
   </>
 );

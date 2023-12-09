@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import ProductDisplay from "../components/partials/ProductDisplay";
+import Productsection from "./productsection/Productsection";
+import Appheader from "../components/header/header";
+import Mainfooter from "./main/footer";
 
 const Category = () => {
   const [products, setProducts] = useState([]);
@@ -26,9 +28,9 @@ const Category = () => {
 
   return (
     <>
-      {products.map((product) => (
-        <ProductDisplay product={product} key={product._id} />
-      ))}
+      <Appheader/>
+        <Productsection products={products}/>
+        <Mainfooter/>
     </>
   );
 };

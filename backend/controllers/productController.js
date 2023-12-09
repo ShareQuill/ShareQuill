@@ -21,7 +21,8 @@ exports.productsHomePage = async (req, res) => {
 exports.postSpecs = async (req, res) => {
   try {
     const postData = req.body;
-    const productInstance = new ProductsModel(postData);
+    console.log("USER ID", req.user._id);
+    const productInstance = new ProductsModel({ ...postData, user: req.user._id});
     await productInstance.save();
     res.json({ message: "Form data received successfully!" });
   } catch (error) {
@@ -71,14 +72,14 @@ exports.postImages = async (req, res) => {
   }
 };
 
-exports.filterCategory = async (req, res) => {
+exports.filterType = async (req, res) => {
   const { category } = req.params;
   try {
-    const productsInCategory = await ProductsModel.find({
-      category: { $regex: new RegExp(category, "i") },
+    const productsInType = await ProductsModel.find({
+      type: { $regex: new RegExp('^' + category.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + '$', 'i') },
     });
-    console.log(`[FETCH] Displaying products for ${category}`);
-    res.json(productsInCategory);
+    console.log(`[FETCH] Displaying products for ${productsInType}`);
+    res.json(productsInType);
   } catch (error) {
     console.error("[ERROR] ", error);
     res.status(500).json({ error: "Internal Server Error" });
