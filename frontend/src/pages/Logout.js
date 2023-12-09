@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const Logout = () => {
-    const navigate = useNavigate();
     const accessTokenCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('userAccessToken='));
 
     const handleLogout = async () => {
@@ -16,7 +14,7 @@ const Logout = () => {
                 },
             });
             if(response.status === 200){
-                navigate("/login");
+                window.location.href = "/"
             }
         } catch (error) {
         console.error('Error during logout:', error);
