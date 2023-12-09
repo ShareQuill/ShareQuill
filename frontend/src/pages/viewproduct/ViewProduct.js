@@ -39,7 +39,13 @@ const ViewProduct = () => {
     }
   };
 
-  return <Example product={product} makePayment={makePayment} />;
+  return (
+    <>
+      <Appheader />
+      <Example product={product} makePayment={makePayment} />
+      <Mainfooter />
+    </>
+  );
 };
 
 export default ViewProduct;

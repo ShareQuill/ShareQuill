@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "../hooks/authRedirectHook";
 
 const PostItems = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
+  const auth = useAuth();
 
   const handleImageChange = (e) => {
     const files = e.target.files;
@@ -72,6 +75,7 @@ const PostItems = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer " + auth.accessToken,
       },
       body: JSON.stringify(postData),
     })

@@ -21,7 +21,8 @@ exports.productsHomePage = async (req, res) => {
 exports.postSpecs = async (req, res) => {
   try {
     const postData = req.body;
-    const productInstance = new ProductsModel(postData);
+    console.log("USER ID", req.user._id);
+    const productInstance = new ProductsModel({ ...postData, user: req.user._id});
     await productInstance.save();
     res.json({ message: "Form data received successfully!" });
   } catch (error) {

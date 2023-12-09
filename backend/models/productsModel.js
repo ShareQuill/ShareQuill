@@ -2,6 +2,13 @@ const mongoose = require("mongoose");
 const collectionName = "products";
 
 const productSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    default: function () {
+      return this.req.user ? this.req.user._id : null;
+    },
+  },
   category: { type: String, required: true },
   sub_category: { type: String, required: true },
   type: { type: String, required: true },
