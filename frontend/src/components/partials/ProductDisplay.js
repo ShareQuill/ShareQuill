@@ -11,7 +11,7 @@ const ProductDisplay = ({ product }) => {
         navigate(`/products/${product._id}`, { state: { product } });
       }}
     >
-      <Tilt options={{ max: 25, perspective: 1000, scale: 1.1 }}>
+      
       <div key={product.id} className="group relative">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                 <img
@@ -33,7 +33,7 @@ const ProductDisplay = ({ product }) => {
                 <p className="text-sm font-medium text-gray-900">{product.price}</p>
               </div>
             </div>
-            </Tilt>
+        
     </div>
   );
 };
