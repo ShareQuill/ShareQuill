@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Calendar from "../../components/calendar/Calendar";
 
 const Example = ({ product, makePayment }) => {
-  const [price, setPrice] = useState(product.rates.daily_rate);
+  const defaultPrice = product.rates.daily_rate;
+
+  const [price, setPrice] = useState(defaultPrice);
   const [noOfDays, setNoOfDays] = useState(1);
   const [activeImg, setActiveImage] = useState(
     product.photos_directory.imageUrl[0]
   );
+
   const { apartment_name, area, zip_code, city, state } = product.location;
   const address = `${apartment_name}, ${area}, ${zip_code}, ${city}, ${state}`;
 
@@ -41,7 +44,16 @@ const Example = ({ product, makePayment }) => {
           <span className=" text-violet-600 font-semibold">Address : </span>
           {address}
         </p>
-        <h6 className="text-2xl font-semibold">$ {price.toFixed(2)}</h6>
+        <h6 className="text-2xl font-semibold">
+          ${" "}
+          {price
+            ? price.toFixed(2)
+            : (() => {
+                setPrice(defaultPrice);
+                return defaultPrice.toFixed(2);
+              })()}
+        </h6>
+
         <p className="text-m">Select Days</p>
         <Calendar setNoOfDays={setNoOfDays} price={price} setPrice={setPrice} />
         <div className="flex flex-row items-center gap-12">
