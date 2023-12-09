@@ -2,34 +2,60 @@ const mongoose = require("mongoose");
 const collectionName = "products";
 
 const productSchema = new mongoose.Schema({
-  category: { type: String, required: true },
-  sub_category: { type: String, required: true },
-  type: { type: String, required: true },
-  name: { type: String, required: true },
-  description: { type: String, required: true },
-  condition: { type: String, required: true },
-  age: { type: String, required: true },
-  rates: {
-    daily_rate: { type: Number, min: 0 },
-    daily_rate: { type: Number, min: 0 },
-    weekly_rate: { type: Number, min: 0 },
-    monthly_rate: { type: Number, min: 0 },
-    sale: { type: Number, min: 0 },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    default: function () {
+      return this.req.user ? this.req.user._id : null;
+    },
   },
-  location: {
-    apartment_name: { type: String },
-    area: { type: String },
-    zip_code: { type: String, length: 5 },
-    city: { type: String },
-    state: { type: String },
+  category: {
+    type: String,
+    required: true,
   },
-  photos_directory: {
+  subcategory: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  images: {
     imageUrl: [
       {
         type: String,
         required: true,
       },
     ],
+  },
+  streetAddress: {
+    type: String,
+    required: true,
+  },
+  postalCode: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
   },
   created_time: {
     type: Date,

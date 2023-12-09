@@ -14,7 +14,7 @@ exports.stripeCheckout = async (req, res) => {
             currency: "usd",
             product_data: {
               name: product.name,
-              images: [product.photos_directory.imageUrl[0]],
+              images: [product.images.imageUrl[0]],
             },
             unit_amount: product.price * 100,
           },
