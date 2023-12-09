@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Calendar from "../../components/calendar/Calendar";
+import DatePicker from "../../components/datepicker/DatePicker";
 
 const Example = ({ product, makePayment }) => {
   const defaultPrice = product.rates.daily_rate;
-
   const [price, setPrice] = useState(defaultPrice);
   const [noOfDays, setNoOfDays] = useState(1);
   const [activeImg, setActiveImage] = useState(
     product.photos_directory.imageUrl[0]
   );
+  const [dateSelected, setDateSelected] = useState(1);
 
   const { apartment_name, area, zip_code, city, state } = product.location;
   const address = `${apartment_name}, ${area}, ${zip_code}, ${city}, ${state}`;
@@ -45,7 +45,7 @@ const Example = ({ product, makePayment }) => {
           {address}
         </p>
         <h6 className="text-2xl font-semibold">
-          ${" "}
+          $
           {price
             ? price.toFixed(2)
             : (() => {
@@ -54,12 +54,13 @@ const Example = ({ product, makePayment }) => {
               })()}
         </h6>
 
-        <p className="text-m">Select Days</p>
-        <Calendar setNoOfDays={setNoOfDays} price={price} setPrice={setPrice} />
+        <p className="text-m">Select Days - {noOfDays ? noOfDays : 1} day/s selected</p>
+        <DatePicker setNoOfDays={setNoOfDays} price={price} setPrice={setPrice} setDateSelected={setDateSelected} />
         <div className="flex flex-row items-center gap-12">
           <button
             onClick={() => makePayment(product, price)}
             className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"
+            disabled={!dateSelected}
           >
             Rent now
           </button>
