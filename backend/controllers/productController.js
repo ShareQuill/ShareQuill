@@ -72,14 +72,14 @@ exports.postImages = async (req, res) => {
   }
 };
 
-exports.filterSubCategory = async (req, res) => {
-  const { subcategory } = req.params;
+exports.filterType = async (req, res) => {
+  const { category } = req.params;
   try {
-    const productsInSubCategory = await ProductsModel.find({
-      subcategory: { $regex: new RegExp(subcategory, "i") },
+    const productsInType = await ProductsModel.find({
+      type: { $regex: new RegExp('^' + category.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + '$', 'i') },
     });
-    console.log(`[FETCH] Displaying products for ${subcategory}`);
-    res.json(productsInSubCategory);
+    console.log(`[FETCH] Displaying products for ${productsInType}`);
+    res.json(productsInType);
   } catch (error) {
     console.error("[ERROR] ", error);
     res.status(500).json({ error: "Internal Server Error" });
